@@ -1,0 +1,6 @@
+javac Main.java
+
+echo "# --- Java  ---"
+
+java Main 
+

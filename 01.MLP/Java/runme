@@ -1,0 +1,16 @@
+
+cd src/ 
+
+javac pl/heinzelman/Main.java -d ../out
+cd ../out
+
+echo " compiled ! "
+echo "---"
+echo " "
+echo "start: "
+date +%k:%M:%S.%N
+
+java pl.heinzelman.Main
+
+echo "end:"
+date +%k:%M:%S.%N

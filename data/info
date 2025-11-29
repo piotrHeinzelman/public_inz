@@ -1,0 +1,3 @@
+zestaw danych MNIST
+http://yann.lecun.com/exdb/mnist/
+gzip *ubyte.gz -d
