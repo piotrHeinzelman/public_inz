@@ -156,12 +156,12 @@ public class Task_4_CNN implements Task{
 
         for (int i = 0; i < 1; i++) {
 
-            int epochs = 5; //50;
+            int epochs = 50; //50;
             for (int j = 0; j < epochs; j++) {
             System.out.println(  "Epo: "+i*5 + j );
-                train(30);
+                train(240);
             }
-            test(30);
+            test(240);
         }
     }
 
@@ -227,7 +227,7 @@ public class Task_4_CNN implements Task{
             //accuracy += correct_label == Mat.v_argmax(out_l) ? 1 : 0;
             sum ++;
         }
-        System.out.println("\n***************************************\n** TEST ** errors "+ ( error ) + " .. " + ( 100 * accuracy / test_size ) + " : acc["+accuracy+ "]%\n" );
+        System.out.println("\n***************************************\n** TEST ** errors "+ ( error ) + " .. " + ( 100 * accuracy / test_size )  + "]%\n" );
         // Tools2.printTable2( errors );
     }
 
