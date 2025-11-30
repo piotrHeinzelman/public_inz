@@ -3,6 +3,7 @@ package pl.heinzelman.tools;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 
@@ -47,18 +48,88 @@ trainX = trainX.reshape(percent*8, 3, 240,240).astype("float32") # / 255
 public class Tools2 {
 
     private static String path="../../../data/";
-    private static String testXname="out.bin";
-    private static String testYname="out.class";
-    private static String trainXname="out.bin";
-    private static String trainYname="out.class";
+    private static String testXname="output.bin";
+    private static String testYname="output.class";
+    private static String trainXname="output.bin";
+    private static String trainYname="output.class";
 
     private byte[] trainYfile=null;
     private byte[] testYfile=null;
     private float[][] trainY=null;
     private float[][] testY=null;
 
-    private float[][] trainX=null;
-    private float[][] testX=null;
+    private float[][][][] trainX=null;
+    private float[][][][] testX=null;
+
+
+
+    public  void prepareData3C( int percent ){
+        int H=240; int W=240; int C=3; String out="";
+
+        try {
+            trainYfile =  loadBin( path + trainYname,  0, percent*8*2 ); // offset=8, size=percent*600  // OK
+            testYfile =  loadBin( path + testYname,   0, percent*8*2 );   // offset=8, size=percent*100 // OK
+
+            trainY = new float[percent*8][2];
+            testY  = new float[percent*8][2];
+            //train Y
+            for (int i=0;i<percent*8;i++){
+                trainY[i][0] = 1.0f * trainYfile[i*2 + 0]  ;  // = new float[]{ 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+                trainY[i][1] = 1.0f * trainYfile[i*2 + 1];
+            }
+            // test Y
+            for (int i=0;i<percent*8;i++){
+                trainY[i][0] = 1.0f * trainYfile[i*2 + 0]  ;
+                trainY[i][1] = 1.0f * trainYfile[i*2 + 1];
+            }
+            //System.out.println( trainY[4][0]  + " : " +trainY[4][1]  );
+
+            byte[] trainXfile = loadBin(path + trainXname, 0, percent*8 * 240*240*3 );// offset=16 size=percent*784*600
+
+            trainX=new float[percent*8][3][240][240];
+            for (int n=0;n<percent*8;n++) {
+                for (int h=0;h<H;h++){
+                    for (int w=0;w<W;w++) {
+                       for (int c = 0; c < C; c++) {
+
+                            byte val =  trainXfile[n *W*H*C + h * W*C + w*C + c];
+
+                            //System.out.println( val );
+                           trainX[n][c][h][w] = 0.01f*val;///255.0f;///256.0f; //0-1
+                          // System.out.println(  trainX[n][c][h][w] );
+                         //   out += " " + Byte.toUnsignedInt(val);
+
+                      }
+                    }
+                   // System.out.println(out);
+                }
+            }
+
+            byte[] testXfile = loadBin(path + trainXname, 0, percent*8 * 240*240*3 );// offset=16 size=percent*784*600
+
+            testX=new float[percent*8][3][240][240];
+            for (int n=0;n<percent*8;n++) {
+                for (int h=0;h<H;h++){
+                    for (int w=0;w<W;w++) {
+                        for (int c = 0; c < C; c++) {
+
+                            byte val =  trainXfile[n *W*H*C + h * W*C + w*C + c];
+
+                            //System.out.println( val );
+                            testX[n][c][h][w] = 0.01f*val;///255.0f;///256.0f; //0-1
+                            // System.out.println(  trainX[n][c][h][w] );
+                            //   out += " " + Byte.toUnsignedInt(val);
+
+                        }
+                    }
+                    // System.out.println(out);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 
     public  void prepareData( int percent ){
@@ -80,7 +151,7 @@ public class Tools2 {
                 testY[i][ testYfile[i] ]=1.0f;
             }
 
-
+/*
             byte[] trainXfile = loadBin(path + trainXname, 16, percent * 240*240 * 8);// offset=16 size=percent*784*600
             trainX=new float[percent*8][240*240*3];
             for (int i=0;i<percent*8;i++) {
@@ -99,7 +170,7 @@ public class Tools2 {
                     testX[i][j]=Byte.toUnsignedInt( testXfile[off+j] )/254.0f;///256.0f;
                 }
             }
-
+*/
             // show data:
             //for ( int i=0;i<100;i++ ) {
             //    saveVectorAsImg( trainX[i], trainYfile[i] +"_key_is_" + i );
@@ -141,8 +212,8 @@ public class Tools2 {
 
     public float[][] getTrainY() { return trainY; }
     public float[][] getTestY()  { return testY;  }
-    public float[][] getTrainX() { return trainX; }
-    public float[][] getTestX()  { return testX;  }
+    public float[][][][] getTrainX() { return trainX; }
+    public float[][][][] getTestX()  { return testX;  }
 
     public  String AryToString( float[]X ){
         return Arrays.toString( X );

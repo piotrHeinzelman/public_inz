@@ -13,9 +13,9 @@ import java.util.Random;
 public class Task_4_CNN implements Task{
 
     private Tools2 tools = new Tools2();
-    private float[][] testX;
+    private float[][][][] testX;
     private float[][] testY;
-    private float[][] trainX;
+    private float[][][][] trainX;
     private float[][] trainY;
     private int[][] errors = new int [10][10];
 
@@ -73,17 +73,17 @@ public class Task_4_CNN implements Task{
 
     public void prepare() {
         int dataSize=30;
-        tools.prepareData( dataSize );
+        tools.prepareData3C( dataSize );
 
         testX = tools.getTestX();
         testY = tools.getTestY();
         trainX = tools.getTrainX();
         trainY = tools.getTrainY();
 
-        float[][] oneX = new float[240][240];
-        oneX = tools.convertToSquare240x240( trainX[0] );
+        //float[][] oneX = new float[240][240];
+        //oneX = tools.convertToSquare240x240( trainX[0] );
 
-        conv1.setUpByX( 1,240 );
+        conv1.setUpByX( 3,240 );
         conv2.setUpByX(32,117);
         conv3.setUpByX(64,56);
         conv4.setUpByX(128,27);
@@ -101,11 +101,11 @@ public class Task_4_CNN implements Task{
     }
 
 
-    public float[] forward_( float[][] X ){
-        float[][][] oneX = new float[1][][];
-        oneX[0]=X;
+    public float[] forward_( float[][][] X ){
+        //float[][][] oneX = new float[1][][];
+        //oneX[0]=X;
         //Tools.printTable2(  relu2.Forward ( poolMax2.Forward( conv2.Forward ( relu1.Forward ( poolMax1.Forward( conv1.Forward( oneX )))))));
-        float[][][]t1=relu1.Forward ( poolMax1.Forward( conv1.Forward( oneX )));
+        float[][][]t1=relu1.Forward ( poolMax1.Forward( conv1.Forward( X )));
 
         float[][][]t2=relu2.Forward ( poolMax2.Forward( conv2.Forward ( t1  )));
       //  Tools.printTable2(t2);
@@ -153,14 +153,16 @@ public class Task_4_CNN implements Task{
     public void run() {
         prepare();
         // 20 X train(5000) + test(10000) = max 94% accuracy
-    int epochs=50; //50;
-	for (int j=0;j<epochs;j++){
-        for ( int i=0;i<1;i++) {
-            train(30);
-            System.out.println( "i: "+i+", j: "+j );
+
+        for (int i = 0; i < 1; i++) {
+
+            int epochs = 5; //50;
+            for (int j = 0; j < epochs; j++) {
+            System.out.println(  "Epo: "+i*5 + j );
+                train(30);
+            }
+            test(30);
         }
-        test( 30 );
-    	}
     }
 
     public void train( int test_size ){
@@ -176,7 +178,7 @@ public class Task_4_CNN implements Task{
             int ind_ex =  (int) ( rand.nextFloat()*test_size );
             // System.out.println( ind_ex );
 
-            float[][] X = tools.convertToSquare240x240( trainX[ind_ex] );
+            float[][][] X = trainX[ind_ex];//; tools.convertToSquare240x240( trainX[ind_ex] );
             int correct_label = tools.getIndexMaxFloat(trainY[ind_ex]);
 
             float[] Z = forward_(X);
@@ -187,7 +189,7 @@ public class Task_4_CNN implements Task{
             float[] gradient = softmax.gradientCNN( Z, correct_label );
             backward_( gradient );
         }
-        System.out.println( "Acc: " + ((100.0f*accuracy)/ test_size) + ", Loss: " + loss + ", of: " + test_size );
+        System.out.println( "Acc: " + ((100.0f*accuracy)/ test_size) /*+ ", Loss: " + loss + ", of: " + test_size*/ );
         loss=0.0f;
     }
 
@@ -211,7 +213,7 @@ public class Task_4_CNN implements Task{
 
             // importImage
             int correct_label=tools.getIndexMaxFloat( testY[i] );
-            float[][] pxl = tools.convertToSquare240x240( testX[i] );
+            float[][][] pxl = testX[i]; //tools.convertToSquare240x240( testX[i] );
 
             // perform convolution 28*28 --> 8x26x26
             out_l = forward_( pxl );
