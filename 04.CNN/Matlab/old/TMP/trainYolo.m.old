@@ -1,0 +1,250 @@
+% https://www.mathworks.com/help/vision/ref/trainyolov4objectdetector.html
+% https://www.mathworks.com/help/vision/ug/object-detection-using-yolov4-deep-learning.html
+% https://www.mathworks.com/help/vision/ref/yolov4objectdetector.html
+
+% https://www.mathworks.com/help/vision/ref/trainyolov4objectdetector.html#mw_c9123667-38e8-4d10-959c-35af840d92d0
+
+%Transfer Learning
+%To perform transfer learning, use a pretrained convolutional neural network (CNN) as the base network for a YOLO v4 deep learning network. Configure the YOLO v4 deep learning network for training on a new data set by specifying the anchor boxes and the new object classes. Use the yolov4ObjectDetector object to create a custom YOLO v4 detection network from any pretrained CNN, such as ResNet-50. Then, train the network by using the trainYOLOv4ObjectDetector function.
+
+%For information about how to create a custom YOLO v4 object detector, see Create Custom YOLO v4 Object Detector.
+%Label Training Data for Deep Learning
+
+%You can use the Image Labeler, Video Labeler, or Ground Truth Labeler (Automated Driving Toolbox) app to interactively label pixels and export label data for training. You can also use the apps to label axis-aligned and rotated rectangular regions of interest (ROIs) for object detection, scene labels for image classification, and pixels for semantic segmentation. To create training data from a ground truth object exported by any of the labelers, use the objectDetectorTrainingData or pixelLabelTrainingData functions. For more details, see Training Data for Object Detection and Semantic Segmentation.
+
+
+trainDataPath='~/inz_DATA/INZ2/SAS_and_NoSAS_train_Data_240/';
+
+
+name="tiny-yolov4-coco";
+detector = yolov4ObjectDetector( name );
+
+% name = "tiny-coco";
+% detector = yoloxObjectDetector( name );
+
+%disp(name);
+%disp(detector);
+
+TIME_GenerateDetector = datetime('now');
+
+
+
+if (false)
+%unzip("DigitsData.zip")
+% imds = imageDatastore("DigitsData", ...
+% imds = imageDatastore("D:\\INZ\\SAS_and_NoSAS_train_Data\\", IncludeSubfolders=true, LabelSource="foldernames");
+imds = imageDatastore( trainDataPath , IncludeSubfolders=true, LabelSource="foldernames");
+numTrainFiles = 800;
+[imdsTrain,imdsTest] = splitEachLabel(imds,numTrainFiles,"randomized");
+
+save( append(trainDataPath,'imdsTrain.mat'),'imdsTrain');
+save( append(trainDataPath,'imdsTest.mat'),'imdsTest');
+end
+
+if (true)
+fn1 = strcat( trainDataPath,'imdsTrain.mat' );
+load(fn1);
+
+fn2 = strcat( trainDataPath,'imdsTest.mat' );
+load(fn2);
+end
+
+
+% https://www.mathworks.com/help/vision/ref/objectdetectortrainingdata.html
+% https://www.youtube.com/watch?v=70mq_HbFkfo
+
+% detector = yolov4ObjectDetector(baseNet,classes,aboxes,DetectionNetworkSource=layer)
+
+% https://www.mathworks.com/help/vision/ug/object-detection-using-yolov4-deep-learning.html
+% https://www.mathworks.com/help/vision/referencelist.html?type=function&s_tid=CRUX_topnav&category=object-detection
+
+% https://www.mathworks.com/help/vision/ref/trainimagecategoryclassifier.html
+
+%% https://www.mathworks.com/help/vision/ref/trainyolov4objectdetector.html
+
+if(false)
+   bag = bagOfFeatures(imdsTrain);
+   save( append(trainDataPath,'bag.mat'),'bag');
+else
+fn = strcat( trainDataPath,'bag.mat' );load(fn);
+end
+
+if(true)
+   categoryClassifier = trainImageCategoryClassifier(imdsTrain,bag);
+   save( append(trainDataPath,'categoryClassifier.mat'),'categoryClassifier');
+else
+fn = strcat( trainDataPath,'categoryClassifier.mat' );load(fn);
+end
+
+disp(categoryClassifier);
+
+
+
+
+if(true)
+  exit()
+end
+
+
+inputSize = [240 240 3];
+classNames = categories(imds.Labels);
+numClasses = numel(classNames);
+
+
+
+%accuracy = testnet(net,imdsTest,"accuracy")
+
+
+%scoresTest = minibatchpredict(net,imdsTest);
+%YTest = scores2label(scoresTest,classNames);
+
+%confusionchart(imdsTest.Labels,YTest)
+
+%save(filename)
+%Then
+%load('filename.mat')
+
+
+% MLP
+% https://www.mathworks.com/help/deeplearning/ref/trainnet.html#mw_56bfbbd7-51a0-449d-8db7-32c9a0070293
+
+% ReTrain net
+% https://www.mathworks.com/help/deeplearning/ug/retrain-neural-network-to-classify-new-images.html
+
+% Freeze Network
+% https://www.mathworks.com/help/deeplearning/ug/retrain-neural-network-to-classify-new-images.html
+
+% Converter Tensorflow <-> ONXX <-PyTorch->
+% https://www.mathworks.com/help/deeplearning/networks-from-external-platforms.html
+
+% https://www.mathworks.com/help/deeplearning/ug/experiment-with-pretrained-networks.html?searchHighlight=u%C5%BCycie+wcze%C5%9Bniejszych+przetrenowanych+wag+w+matlab&s_tid=srchtitle_support_results_5_u%25C5%25BCycie+wcze%25C5%259Bniejszych+przetrenowanych+wag+w+matlab
+
+% https://www.mathworks.com/help/deeplearning/ug/experiment-with-weight-initializers.html?searchHighlight=transfer+weight+trainnet&s_tid=srchtitle_support_results_1_transfer+weight+trainnet
+
+
+% custom layer
+% https://www.mathworks.com/help/deeplearning/ug/define-custom-layer-with-multiple-inputs.html?searchHighlight=load+custom+net+&s_tid=srchtitle_support_results_6_load+custom+net+
+% https://www.mathworks.com/help/deeplearning/ug/train-network-using-custom-training-loop.html?searchHighlight=load+custom+net+&s_tid=srchtitle_support_results_1_load+custom+net+
+
+
+
+% https://www.mathworks.com/help/deeplearning/ug/pretrained-convolutional-neural-networks.html?searchHighlight=trainnet+load+pretrained+data&s_tid=srchtitle_support_results_2_trainnet+load+pretrained+data
+%Pretrained Object Detection Network Name Arguments	Object Detection Model	Required Support Package
+%    "darknet19-coco"
+%    "tiny-yolov2-coco"
+%
+%YOLO v2 – yolov2ObjectDetector (Computer Vision Toolbox)
+%	Computer Vision Toolbox Model for YOLO v2 Object Detection
+%    "darknet53-coco"
+%    "tiny-yolov3-coco"
+%
+%YOLO v3 – yolov3ObjectDetector (Computer Vision Toolbox)
+%	Computer Vision Toolbox Model for YOLO v3 Object Detection
+%    "csp-darknet53-coco"
+%    "tiny-yolov4-coco"
+%
+%YOLO v4 – yolov4ObjectDetector (Computer Vision Toolbox)
+%	Computer Vision Toolbox Model for YOLO v4 Object Detection
+%    "nano-coco"
+%    "tiny-coco"
+%    "small-coco"
+%    "medium-coco"
+%    "large-coco"
+%
+%YOLOX – yoloxObjectDetector (Computer Vision Toolbox)
+%	
+%Automated Visual Inspection Library for Computer Vision Toolbox
+%
+%    "tiny-network-coco"
+%    "small-network-coco"
+%    "medium-network-coco"
+%    "large-network-coco"
+%
+%
+
+
+
+
+
+% Hardware and Acceleration
+% ExecutionEnvironment — Hardware resource for training neural network
+% "auto" (default) | "cpu" | "gpu" | "multi-gpu" | "parallel-auto" | "parallel-cpu" | "parallel-gpu"
+
+% PreprocessingEnvironment — Environment for fetching and preprocessing data
+% "serial" (default) | "background" | "parallel"
+
+% Acceleration — Performance optimization
+% "auto" (default) | "none"
+
+
+%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (false)
+
+
+
+% detekcja
+imgName = strcat(taskNames(t),'.jpg');
+img = imread( imgName );
+% img = imread('team.jpg');
+% img = imread('dog1.jpg');
+% img = imread('dog2.jpg');
+% img = imread('sherlock.jpg');
+
+TIME_ReadImage = datetime('now');
+[bboxes,scores,labels] = detect(detector,img);
+TIME_DetectionTime = datetime('now');
+detectedImg = insertObjectAnnotation(img,"Rectangle",bboxes,labels);
+
+%   figure;
+%   imshow(detectedImg);
+
+targetName = strcat(  name , "_" , taskNames(t) , ".png" );
+imwrite(detectedImg, targetName );
+
+prepareDetectorTime = duration( TIME_GenerateDetector-TIME_START );
+readImageTime = duration( TIME_ReadImage-TIME_GenerateDetector );
+detectTime = duration( TIME_DetectionTime-TIME_ReadImage );
+
+sc=0;
+lb='?';
+if ( size(scores) > 0)
+    sc = scores(1);
+end
+if ( size(labels) > 0)
+    lb = labels(1);
+end
+
+fprintf ('# net: %s; task:%s; class: %s score: %f;  prepare detectortime: :%f; \n# load image time: %f; detect object time: %f \n', name, taskNames(t), lb, sc,  seconds( prepareDetectorTime ), seconds( readImageTime ), seconds(detectTime)  );
+
+% if (t==1)
+    fprintf ('library[ %d ]=\" %s score:%f, find(%i) \" \n', i-1, name, sc, (0+size(labels)));
+% end
+
+% prepare[0]
+% load image[1]
+% detect [2]
+% score [3]
+% detections length [4]
+fprintf ('%s0[%d]=%f \n' ,seriesName(t), i-1, seconds( prepareDetectorTime ));
+fprintf ('%s1[%d]=%f \n' ,seriesName(t), i-1, seconds( readImageTime       ));
+fprintf ('%s2[%d]=%f \n' ,seriesName(t), i-1, seconds( detectTime          ));
+
+
+
+end
+
+
+ 

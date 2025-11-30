@@ -1,0 +1,7 @@
+% https://www.mathworks.com/help/vision/ref/trainyoloxobjectdetector.html?searchHighlight=yolo4+train&s_tid=srchtitle_support_results_19_yolo4+train
+
+% Subnetwork to freeze during training, specified as one of these values:
+%    "none" — Do not freeze a subnetwork.
+%    "backbone" — Freeze the feature extraction subnetwork, including the layers following the region of interest (ROI) align layer.
+%
+% The weight of layers in frozen subnetworks does not change during training.

@@ -1,0 +1,1 @@
+openExample('vision/TrainAYOLOV2VehicleDetectorExample')

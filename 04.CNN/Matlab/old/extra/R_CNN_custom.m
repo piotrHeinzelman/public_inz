@@ -1,0 +1,194 @@
+% https://www.mathworks.com/help/vision/ug/object-detection-using-deep-learning.html
+
+% Create the image input layer for 32x32x3 CIFAR-10 images.
+% USE images 
+if (false) 
+    path = "D:\\INZ\\SAS_and_NoSAS_train_Data_240\\";
+else 
+    path='/home/john/inz_DATA/INZ2/SAS_and_NoSAS_train_Data_240/';
+end    
+
+
+imds = imageDatastore(path, IncludeSubfolders=true, LabelSource="foldernames");
+numTrainFiles = 800;
+[imdsTrain,imdsTest] = splitEachLabel(imds,numTrainFiles,"randomized"); 
+
+layers = [
+% Input Layers
+    imageInputLayer([240 240 3]) % [height width numChannels]
+
+%middleLayers
+    convolution2dLayer( [51 51], 16 ,'Padding',2)   % (filterSize,numFilters,'Padding',2) % filterSize = [5 5]; numFilters = 32;
+    reluLayer()
+    maxPooling2dLayer(3,'Stride',2)
+
+    convolution2dLayer([15,15], 32, 'Padding', 2 )
+    reluLayer()
+    maxPooling2dLayer(3, 'Stride',2)
+
+    convolution2dLayer([5,5], 32*2, 'Padding', 2 )
+    reluLayer()
+    maxPooling2dLayer(3,'Stride',2)
+
+%finalLayers
+    fullyConnectedLayer(64)
+    reluLayer()
+
+    fullyConnectedLayer(2)  % (numImageCategories)
+
+    softmaxLayer()
+    classificationLayer
+    ]
+
+layers(2).Weights = 0.0001 * randn([51 51 3 16]); % [filterSize numChannels numFilters]
+layers(5).Weights = 0.0001 * randn([15 15 16 32]);
+layers(8).Weights = 0.0001 * randn([5 5 32 64]); 
+
+
+% Set the network training options
+opts = trainingOptions('sgdm', ...
+    'Momentum', 0.9, ...
+    'InitialLearnRate', 0.003, ... % 0.001, 
+    'LearnRateSchedule', 'piecewise', ...
+    'LearnRateDropFactor', 0.1, ...
+    'LearnRateDropPeriod', 8, ...
+    'L2Regularization', 0.004, ...
+    'MaxEpochs', 250, ...
+    'MiniBatchSize', 128, ...
+    'ExecutionEnvironment','parallel', ...
+    'Plots','training-progress', ...
+    'Verbose', true);
+
+
+
+% A trained network is loaded from disk to save time when running the
+% example. Set this flag to true to train the network.
+doTraining = true;
+
+if doTraining    
+    % Train a network.
+    cifar10Net = trainNetwork(imdsTrain, layers, opts);
+    save( append(path,'cifar10Net.mat'),'cifar10Net');
+else
+    % Load pre-trained detector for the example.
+    load( append(path , 'cifar10Net.mat'), 'cifar10Net' );
+end
+
+
+
+% Extract the first convolutional layer weights
+w = cifar10Net.Layers(2).Weights;
+
+% rescale the weights to the range [0, 1] for better visualization
+w = rescale(w);
+
+figure
+montage(w)
+
+
+% Run the network on the test set.
+YTest = classify(cifar10Net, testImages);
+
+% Calculate the accuracy.
+accuracy = sum(YTest == testLabels)/numel(testLabels)
+
+
+
+
+
+
+% Load the ground truth data
+data = load('stopSignsAndCars.mat', 'stopSignsAndCars');
+stopSignsAndCars = data.stopSignsAndCars;
+
+% Update the path to the image files to match the local file system
+visiondata = fullfile(toolboxdir('vision'),'visiondata');
+stopSignsAndCars.imageFilename = fullfile(visiondata, stopSignsAndCars.imageFilename);
+
+% Display a summary of the ground truth data
+summary(stopSignsAndCars)
+
+
+
+% Only keep the image file names and the stop sign ROI labels
+stopSigns = stopSignsAndCars(:, {'imageFilename','stopSign'});
+
+% Display one training image and the ground truth bounding boxes
+I = imread(stopSigns.imageFilename{1});
+I = insertObjectAnnotation(I,'Rectangle',stopSigns.stopSign{1},'stop sign','LineWidth',8);
+
+figure
+imshow(I)
+
+
+
+% A trained detector is loaded from disk to save time when running the
+% example. Set this flag to true to train the detector.
+doTraining = false;
+
+if doTraining
+    
+    % Set training options
+    options = trainingOptions('sgdm', ...
+        'MiniBatchSize', 128, ...
+        'InitialLearnRate', 1e-3, ...
+        'LearnRateSchedule', 'piecewise', ...
+        'LearnRateDropFactor', 0.1, ...
+        'LearnRateDropPeriod', 100, ...
+        'MaxEpochs', 100, ...
+        'Verbose', true);
+    
+    % Train an R-CNN object detector. This will take several minutes.    
+    rcnn = trainRCNNObjectDetector(stopSigns, cifar10Net, options, ...
+    'NegativeOverlapRange', [0 0.3], 'PositiveOverlapRange',[0.5 1])
+else
+    % Load pre-trained network for the example.
+    load('rcnnStopSigns.mat','rcnn')       
+end
+
+
+
+% Read test image
+testImage = imread('stopSignTest.jpg');
+
+% Detect stop signs
+[bboxes,score,label] = detect(rcnn,testImage,'MiniBatchSize',128)
+
+
+
+% Display the detection results
+[score, idx] = max(score);
+
+bbox = bboxes(idx, :);
+annotation = sprintf('%s: (Confidence = %f)', label(idx), score);
+
+outputImage = insertObjectAnnotation(testImage, 'rectangle', bbox, annotation);
+
+figure
+imshow(outputImage)
+
+
+% The trained network is stored within the R-CNN detector
+rcnn.Network
+
+
+featureMap = activations(rcnn.Network, testImage, 14);
+
+% The softmax activations are stored in a 3-D array.
+size(featureMap)
+
+
+rcnn.ClassNames
+
+
+stopSignMap = featureMap(:, :, 1);
+
+% Resize stopSignMap for visualization
+[height, width, ~] = size(testImage);
+stopSignMap = imresize(stopSignMap, [height, width]);
+
+% Visualize the feature map superimposed on the test image. 
+featureMapOnImage = imfuse(testImage, stopSignMap); 
+
+figure
+imshow(featureMapOnImage)
