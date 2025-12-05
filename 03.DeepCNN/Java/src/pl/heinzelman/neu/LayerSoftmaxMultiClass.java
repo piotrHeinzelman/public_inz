@@ -59,12 +59,12 @@ public class LayerSoftmaxMultiClass implements LayerParent {
         return Z;
     }
 
+/*
     public float[] nBackward( float[] Ein ){ // S-Z or Ein
         for ( int m=0;m<Eout.length;m++ ){ Eout[m]=0.0f;}
-
         int i=0;
-        for ( ;i<Ein.length;i++ ){ if (Ein[i]!=0) break; }
-        float EinTrue =Ein[i];
+        for (;i<Ein.length;i++ ){ if (Ein[i]!=0) break; }
+        float EinTrue=Ein[i];
 
         int len=Z.length;
         for ( int j=0;j<len;j++ ){
@@ -81,6 +81,36 @@ public class LayerSoftmaxMultiClass implements LayerParent {
         }
         return Eout;
     }
+*/
+
+
+
+    public float[] nBackward( float[] Ein ) { // S-Z or Ein
+        for (int m = 0; m < Eout.length; m++) { Eout[m] = 0.0f; }
+
+        float EinTrue =0f;
+        int i = 0;
+        for (; i < Ein.length; i++) {
+            if (Ein[i] != 0) { EinTrue = Ein[i]; break; }
+        }
+
+        int len=Z.length;
+        for ( int j=0;j<len;j++ ){
+            dFofZ[j] = -1.0f*(Z[i]*Z[j]);
+        }
+        dFofZ[i] = Z[i]*(1.0f-Z[i]);
+
+        float[] dFofZ_x_EinI_True_I = new float[dFofZ.length];
+        for (int j=0;j<dFofZ.length;j++){ dFofZ_x_EinI_True_I[j] = dFofZ[j]*EinTrue; }
+
+        for ( int n=0; n<neurons.length; n++ ){
+            neurons[n].Backward( dFofZ_x_EinI_True_I[n]  , Ein[n] ); // EN[i] * dFofZ
+            neurons[n].BackwardBias( dFofZ_x_EinI_True_I[n] );
+        }
+        return Eout;
+    }
+
+
 
     // getters / setters
     public float[] getX() { return X; }
@@ -112,7 +142,7 @@ public class LayerSoftmaxMultiClass implements LayerParent {
     }
 
     public float[] gradientCNN( float[] Z, int correct_label ){
-        float si=Z[correct_label];
+        float si=Z[correct_label];  if (si<0.0000000001f) { si=0.0000001f;}
         float[] gradient=new float[Z.length];
         for (int i=0;i<Z.length;i++){ gradient[i]= -si * Z[i]; }
         gradient[correct_label]= si*(1-si);

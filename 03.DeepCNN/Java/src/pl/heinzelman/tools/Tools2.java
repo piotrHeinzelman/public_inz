@@ -242,8 +242,8 @@ public class Tools2 {
         //BACKWARD PROPAGATION --- STOCHASTIC GRADIENT DESCENT
         //gradient of the cross entropy loss
 
-        float[][] gradient=new float[1][10]; //Mat.v_zeros(10);
-        for (int i=0;i<10;i++){ gradient[0][i]=0.0f; }
+        float[][] gradient=new float[1][out_l.length]; //Mat.v_zeros(10);
+        for (int i=0;i< out_l.length;i++){ gradient[0][i]=0.0f; }
         gradient[0][correct_label]=-1/out_l[0][correct_label];
         return gradient;
     }

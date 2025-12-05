@@ -7,6 +7,7 @@ import pl.heinzelman.LayerDeep.LayerReLU;
 import pl.heinzelman.neu.LayerSoftmaxMultiClass;
 import pl.heinzelman.tools.Tools2;
 
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -17,7 +18,7 @@ public class Task_4_CNN implements Task{
     private float[][] testY;
     private float[][][][] trainX;
     private float[][] trainY;
-    private int[][] errors = new int [10][10];
+    private int[][] errors = new int [2][2];
 
 
     private LayerConv conv1 = new LayerConv( 7 , 32, null, null  );
@@ -68,7 +69,7 @@ public class Task_4_CNN implements Task{
 
 
     private LayerFlatten flatten = new LayerFlatten();
-    private LayerSoftmaxMultiClass softmax = new LayerSoftmaxMultiClass( 2, 10 );
+    private LayerSoftmaxMultiClass softmax = new LayerSoftmaxMultiClass( 2, 2 );
 
 
     public void prepare() {
@@ -106,6 +107,7 @@ public class Task_4_CNN implements Task{
     }
 
     public float[][][] backward_( float[] gradient ){
+        System.out.println(Arrays.toString( gradient ) );
         float[][][] t9 =flatten.Backward(  softmax.nBackward( gradient ));
         float[][][] t8 = conv9.Backward ( poolMax9.Backward  ( relu9.Backward   ( t9 )));
         float[][][] t7 = conv8.Backward ( poolMax8.Backward  ( relu8.Backward   ( t8 )));
@@ -123,15 +125,14 @@ public class Task_4_CNN implements Task{
     @Override
     public void run() {
         prepare();
-        for (int i = 0; i < 1; i++) {
 
             int epochs = 50; //50;
             for (int j = 0; j < epochs; j++) {
                 train(240);
-                System.out.println(  "Epo: "+i*5 + j );
+                System.out.println(  "Epo: "+j );
             }
             test(240);
-        }
+
     }
 
     public void train( int test_size ){
@@ -158,7 +159,8 @@ public class Task_4_CNN implements Task{
 //System.out.println( "findClass:" +correct_label );
 //System.out.println( "Z:" + Arrays.toString( Z ));
             float[] gradient = softmax.gradientCNN( Z, correct_label );
-//System.out.println( "gradient:" + Arrays.toString( gradient ) );
+
+System.out.println( "gradient:" + Arrays.toString( gradient ) );
             backward_( gradient );
         }
         System.out.println( "Acc: " + ((100.0f*accuracy)/ test_size) + ", Loss: " + loss /*+ ", of: " + test_size*/ );
@@ -170,7 +172,7 @@ public class Task_4_CNN implements Task{
 
     public  void test ( int test_size  )   {
         Random rand = new Random();
-        int[][] errors = new int[10][10];
+        int[][] errors = new int[2][2];
         int error = 0;
 
         int label_counter = 0;
