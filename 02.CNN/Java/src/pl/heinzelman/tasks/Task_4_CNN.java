@@ -3,8 +3,10 @@ package pl.heinzelman.tasks;
 import pl.heinzelman.LayerDeep.LayerConv;
 import pl.heinzelman.LayerDeep.LayerFlatten;
 import pl.heinzelman.LayerDeep.LayerPoolingMax;
-import pl.heinzelman.LayerDeep.LayerSoftmaxMultiClass;
+import pl.heinzelman.neu.LayerSoftmaxMultiClass;
 import pl.heinzelman.tools.Tools2;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 
 import java.util.Random;
@@ -60,7 +62,11 @@ public class Task_4_CNN implements Task{
             train(48000);
             System.out.println( "epoch: " + i );
        }
+//        Instant Fstart=Instant.now();
         test(8000);
+//	Instant Fend=Instant.now();
+//	Double time=( ChronoUnit.MILLIS.between(Fstart,Fend))/1000.0;
+//        System.out.println("Accuracy Time:" +  time );
     }
 
     public void train( int test_size ){
@@ -74,6 +80,7 @@ public class Task_4_CNN implements Task{
             //FORWARD PROPAGATION
 
             int ind_ex =  (int) ( rand.nextFloat()*test_size );
+            // System.out.println( ind_ex );
 
             float[][] X = tools.convertToSquare28x28( trainX[ind_ex] );
             int correct_label = tools.getIndexMaxFloat(trainY[ind_ex]);
@@ -86,6 +93,7 @@ public class Task_4_CNN implements Task{
             float[] gradient = softmax.gradientCNN( Z, correct_label );
             backward_( gradient );
         }
+        //System.out.println( "Acc: " + ((100.0f*accuracy)/ test_size) + ", Loss: " + loss + ", of: " + test_size );
         loss=0.0f;
     }
 
@@ -111,15 +119,20 @@ public class Task_4_CNN implements Task{
             int correct_label=tools.getIndexMaxFloat( testY[i] );
             float[][] pxl = tools.convertToSquare28x28( testX[i] );
 
+            // perform convolution 28*28 --> 8x26x26
             out_l = forward_( pxl );
-            int findClass = tools.getIndexMaxFloat(out_l);
+
+            // compute cross-entropy loss
+            int findClass = tools.getIndexMaxFloat(out_l);//  ()int) Mat.v_argmax(out_l);
             if ( correct_label!=findClass ){
                 errors[correct_label][findClass]++;
                 error++;
             } else { accuracy++;  }
+            //accuracy += correct_label == Mat.v_argmax(out_l) ? 1 : 0;
             sum ++;
         }
         System.out.println("\n***************************************\n** TEST ** errors "+ ( error ) + " : acc["+(accuracy*100) / test_size+ "]%\n" );
+        // Tools2.printTable2( errors );
     }
 
 }

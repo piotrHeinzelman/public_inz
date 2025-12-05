@@ -1,4 +1,4 @@
-package pl.heinzelman.LayerDeep;
+package pl.heinzelman.neu;
 
 public interface LayerParent {
     float[] getX();

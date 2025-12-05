@@ -261,9 +261,11 @@ public class Tools {
         return out;
     }
 
-    public static float crossEntropyMulticlassError( float[] z, int correct_label ){
+    public static float crossEntropyMulticlassError( float[] z ){
         float out = 0.0f;
-        out = (float) -Math.log( z[correct_label] );
+        for ( int i=0;i<z.length; i++ ){
+            out += -Math.log( z[i] );
+        }
         return out;
     }
 

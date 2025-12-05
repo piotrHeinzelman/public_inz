@@ -1,6 +1,4 @@
-package pl.heinzelman.LayerDeep;
-
-import pl.heinzelman.LayerDeep.LayerParent;
+package pl.heinzelman.neu;
 
 import java.util.Arrays;
 
@@ -8,7 +6,7 @@ public class Neuron {
     private float bias=0.0f;
     private final float[] W;
     private final LayerParent parent;
-    private final static float mu=0.01f;
+    private final static float mu=0.0001f;
 
     public void setBias( float b ) { this.bias=b; }
     public float getBias(){ return bias; }
