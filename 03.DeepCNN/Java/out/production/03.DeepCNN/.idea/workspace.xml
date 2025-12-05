@@ -5,52 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27a39dd2-aba0-449c-bdbe-719056abd673" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../TRASH/Tools.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TRASH/copyData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Java03A/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Java03A/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Java03A/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Java03A/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Java03A/Java03A.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../01.MLP/Java/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../01.MLP/Java/src/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/02.CNN.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/02.CNN.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/LayerDeep/LayerConv.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/LayerDeep/LayerFlatten.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/LayerDeep/LayerPoolingMax.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/LayerDeep/Neuron2D.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/neu/LayerParent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/neu/LayerSoftmaxMultiClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/neu/Neuron.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/tasks/Task.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/tasks/Task_4_CNN.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/tools/Conv.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/tools/Tools2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/03.DeepCNN.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/LayerDeep/LayerPoolingAvg.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/LayerDeep/_Mat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/MyTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/neu/LayerSigmoidFullConn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/neu/LayerSoftmaxMultiClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/neu/LayerSoftmaxMultiClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/pl/heinzelman/neu/Neuron.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/pl/heinzelman/neu/Neuron.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/pl/heinzelman/tasks/Task_4_CNN.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/pl/heinzelman/tasks/Task_4_CNN.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/pl/heinzelman/tools/Tools2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/pl/heinzelman/tools/Tools2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/03.DeepCNN/pl/heinzelman/neu/Neuron.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/03.DeepCNN/pl/heinzelman/neu/Neuron.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/03.DeepCNN/pl/heinzelman/tasks/Task_4_CNN.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/03.DeepCNN/pl/heinzelman/tasks/Task_4_CNN.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/03.DeepCNN/pl/heinzelman/tools/Tools2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/03.DeepCNN/pl/heinzelman/tools/Tools2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pl/heinzelman/neu/Neuron.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/neu/Neuron.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/tasks/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pl/heinzelman/tasks/Task_4_CNN.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/tasks/Task_4_CNN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/tools/Tools.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/tools/copyData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/tools/Tools2.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/tools/Tools2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,19 +78,6 @@
       <option name="MAIN_CLASS_NAME" value="pl.heinzelman.TRASH.MyTest" />
       <option name="METHOD_NAME" value="CopyDataToBinRepo240x240_240imgs" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="src" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="src" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

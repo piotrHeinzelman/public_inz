@@ -80,9 +80,6 @@ public class Task_4_CNN implements Task{
         trainX = tools.getTrainX();
         trainY = tools.getTrainY();
 
-        //float[][] oneX = new float[240][240];
-        //oneX = tools.convertToSquare240x240( trainX[0] );
-
         conv1.setUpByX( 3,240 );
         conv2.setUpByX(32,117);
         conv3.setUpByX(64,56);
@@ -130,8 +127,8 @@ public class Task_4_CNN implements Task{
 
             int epochs = 50; //50;
             for (int j = 0; j < epochs; j++) {
-            System.out.println(  "Epo: "+i*5 + j );
                 train(240);
+                System.out.println(  "Epo: "+i*5 + j );
             }
             test(240);
         }
