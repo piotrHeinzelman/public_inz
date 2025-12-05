@@ -2,55 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31b4f221-d0c9-4134-b266-f6f68d7e0b00" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/neu/Neuron.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/neu/Neuron.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/tasks/Task_64_64_simple_backward.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/tasks/Task_64_64_simple_backward.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pl/heinzelman/tools/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/tools/Tools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/LayerDeep/LayerConv.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/LayerDeep/LayerConv.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/LayerDeep/LayerPoolingAvg.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/LayerDeep/LayerReLU.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/LayerDeep/Neuron2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/LayerDeep/Neuron2D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/LayerDeep/_Mat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/neu/LType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/neu/Layer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/neu/LayerParent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/LayerDeep/LayerParent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/neu/LayerSigmoidFullConn.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/LayerDeep/LayerSoftmaxMultiClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/neu/LayerSoftmaxMultiClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/neu/LayerSoftmaxMultiClassONLYFORWARD.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/neu/Neuron.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/LayerDeep/Neuron.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/tasks/Task_4_CNN.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/tasks/Task_4_CNN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/tools/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/tools/Tools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/tools/Tools2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../02.CNN/Java/src/pl/heinzelman/tools/Tools2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/03.DeepCNN.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/LayerDeep/LayerConv.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/LayerDeep/LayerFlatten.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/LayerDeep/LayerPoolingAvg.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/LayerDeep/LayerPoolingMax.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/LayerDeep/LayerReLU.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/LayerDeep/Neuron2D.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/LayerDeep/_Mat.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/MyTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/neu/LType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/neu/Layer$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/neu/Layer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/neu/LayerParent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/neu/LayerSigmoidFullConn.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/neu/LayerSoftmaxMultiClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/neu/Neuron.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/tasks/Task.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/tasks/Task_4_CNN.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/tools/Conv.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/tools/Tools.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/tools/Tools2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/out/production/03.DeepCNN/pl/heinzelman/tools/copyData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/pl/heinzelman/neu/LayerSoftmaxMultiClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/pl/heinzelman/neu/LayerSoftmaxMultiClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/pl/heinzelman/tasks/Task_4_CNN.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/pl/heinzelman/tasks/Task_4_CNN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../03.DeepCNN/Java/src/03.DeepCNN.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,22 +17,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="36RKayuPPSe5J7LEtHIXysdIxnJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

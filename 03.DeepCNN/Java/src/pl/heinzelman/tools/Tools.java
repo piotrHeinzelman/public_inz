@@ -320,15 +320,7 @@ public class Tools {
 
 
 
-    public static float[][] aryAdd( float[][] A, float[][] B){
-        float [][] C = new float[A.length][A[0].length];
-        for ( int i=0;i<A.length;i++ ){
-            for ( int j=0;j<A[0].length;j++ ) {
-                C[i][j] = A[i][j]+B[i][j];
-            }
-        }
-        return C;
-    }
+
 
     public static float[][] aryAdd( float[][] A, float[][] B, float[][] C, float[][] D ){
         float [][] OUT = new float[A.length][A[0].length];
@@ -435,5 +427,13 @@ public class Tools {
         }
     }
 
-
+    public static float[][] aryAdd( float[][] A, float[][] B){
+        float [][] C = new float[A.length][A[0].length];
+        for ( int i=0;i<A.length;i++ ){
+            for ( int j=0;j<A[0].length;j++ ) {
+                C[i][j] = A[i][j]+B[i][j];
+            }
+        }
+        return C;
+    }
 }

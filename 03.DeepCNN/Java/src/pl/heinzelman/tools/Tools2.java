@@ -254,17 +254,6 @@ public class Tools2 {
     }
 
 
-
-    public  void echo ( Number n ) { System.out.println( n.toString() ); }
-    public  void echo ( float[] v  ) { System.out.println( Tools.AryToString( v ) ); }
-    public  void echo ( float[][] v  ) { System.out.println( Tools.AryToString( v ) ); }
-    public  void echo ( float[][][] v  ) { System.out.println( Tools.AryToString( v ) ); }
-
-    public  void echo ( String name, Number n ) { System.out.println( name + " : " + n.toString() ); }
-    public  void echo ( String name, float[] v  ) { System.out.println( name + " : " + Tools.AryToString( v ) ); }
-    public  void echo ( String name, float[][] v  ) { System.out.println( name + " : " + Tools.AryToString( v ) ); }
-    public  void echo ( String name, float[][][] v  ) { System.out.println( name + " : " + Tools.AryToString( v ) ); }
-
     public static void printTable2( int[][] table ){
         System.out.println( " incorrect class  ->  [0]  |  [1]  |  [2]  |  [3]  |  [4]  |  [5]  |  [6]  |  [7]  |  [8]  |  [9]\n" );
         for (int y=0;y<table[0].length;y++){
@@ -278,6 +267,16 @@ public class Tools2 {
             out += "  "+ ((row[x])>9 ? "" : " " ) +  ( row[x]==0 ? "." : row[x] )   +"   |";
         }
         return ( out );
+    }
+
+    public static float[][] aryAdd( float[][] A, float[][] B){
+        float [][] C = new float[A.length][A[0].length];
+        for ( int i=0;i<A.length;i++ ){
+            for ( int j=0;j<A[0].length;j++ ) {
+                C[i][j] = A[i][j]+B[i][j];
+            }
+        }
+        return C;
     }
 
 }

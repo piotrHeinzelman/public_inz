@@ -35,26 +35,24 @@ public class LayerSoftmaxMultiClass implements LayerParent {
         }
     }
 
-
     public float[] nForward( float[] _x ) {
         for (int m=0;m<X.length;m++){ X[m]=_x[m]; Eout[m]=0; }
         for (int n = 0; n < neurons.length; n++) {
             Y[n] = neurons[n].Forward( X );
         }
-        //
         // Softmax
         int len=Y.length;
         sum = 0.0f;
         float max = 0.0f;
-        for ( int i=0;i<len;i++ ){ // find MAX
+        for ( int i=0;i<len;i++ ){
             if (Y[i]>max) { max=Y[i]; }
         }
-
-        for ( int i=0; i<len; i++ ) {  // Zi = e^Xi
-            sum += (float) Math.exp( Y[i]-max );
+        for ( int i=0; i<len; i++ ) {
+            Y[i] = (float) Math.exp( Y[i]);
+            sum += Y[i];
         }
-        for ( int i = 0; i < len; i++ ) { // Yi = Yi/sum
-            Z[i] = (float) Math.exp((Y[i]-max) / sum);
+        for ( int i = 0; i < len; i++ ) {
+            Z[i] = Y[i] / sum;
         }
         return Z;
     }
@@ -82,40 +80,21 @@ public class LayerSoftmaxMultiClass implements LayerParent {
         return Eout;
     }
 
-    // getters / setters
     public float[] getX() { return X; }
     public float[] getEout() { return Eout; }
 
 
-    @Override public String toString() { return ""; }
+    @Override  public String toString() { return "";}
 
-    public float[] getdZ(  float [] target ){
-        float[] dZ = new float[Z.length];
-        for ( int i=0; i<Z.length; i++ ){
-            dZ[i] = ( Z[i] - target[i] );
-        }
-        return dZ;
-    }
-
-    public float delta_Loss( int correct_label, float[] Z ) {
-        float loss=0f;
-        float cor = Z[correct_label];
-        for (int i=0;i<Z.length;i++){
-            if (i==correct_label){
-                loss-=0;
-            } else {
-                loss-=0;
-            }
-        }
+    public float delta_Loss( int correct_label ) {
         float value_correctLabel = Z[correct_label];
         return  (float) -Math.log( value_correctLabel );
     }
 
-    public float[] gradientCNN( float[] Z, int correct_label ){
-        float si=Z[correct_label];
-        float[] gradient=new float[Z.length];
-        for (int i=0;i<Z.length;i++){ gradient[i]= -si * Z[i]; }
-        gradient[correct_label]= si*(1-si);
+    public float[] gradientCNN( float[] out_l, int correct_label ){
+        float[] gradient=new float[10]; //Mat.v_zeros(10);
+        for (int i=0;i<10;i++){ gradient[i]=0.0f; }
+        gradient[correct_label]=-1/out_l[correct_label];
         return gradient;
     }
 }

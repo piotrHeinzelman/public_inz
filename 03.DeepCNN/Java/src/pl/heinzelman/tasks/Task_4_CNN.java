@@ -5,7 +5,6 @@ import pl.heinzelman.LayerDeep.LayerFlatten;
 import pl.heinzelman.LayerDeep.LayerPoolingMax;
 import pl.heinzelman.LayerDeep.LayerReLU;
 import pl.heinzelman.neu.LayerSoftmaxMultiClass;
-import pl.heinzelman.tools.Tools;
 import pl.heinzelman.tools.Tools2;
 
 import java.util.Arrays;
@@ -93,46 +92,23 @@ public class Task_4_CNN implements Task{
         conv7.setUpByX(18,3);
         conv8.setUpByX(8,1);
         conv9.setUpByX(6,1);
-
-
-
-
-        //Tools.printTable2(    relu2.Forward ( poolMax2.Forward( conv2.Forward ( relu1.Forward ( poolMax1.Forward( conv1.Forward( oneX )))))));
-        //conv2.setUpByX(      relu1.Forward ( poolMax1.Forward( conv1.Forward( oneX )))          );
     }
 
 
     public float[] forward_( float[][][] X ){
-        //float[][][] oneX = new float[1][][];
-        //oneX[0]=X;
-        //Tools.printTable2(  relu2.Forward ( poolMax2.Forward( conv2.Forward ( relu1.Forward ( poolMax1.Forward( conv1.Forward( oneX )))))));
         float[][][]t1=relu1.Forward ( poolMax1.Forward( conv1.Forward( X )));
-
         float[][][]t2=relu2.Forward ( poolMax2.Forward( conv2.Forward ( t1  )));
-      //  Tools.printTable2(t2);
         float[][][]t3=relu3.Forward ( poolMax3.Forward( conv3.Forward ( t2  )));
-    //    Tools.printTable2(t3);
         float[][][]t4=relu4.Forward ( poolMax4.Forward( conv4.Forward ( t3  )));
-     //   Tools.printTable2(t4);
         float[][][]t5=relu5.Forward ( poolMax5.Forward( conv5.Forward ( t4  )));
-      //  Tools.printTable2(t5);
         float[][][]t6=relu6.Forward ( poolMax6.Forward( conv6.Forward ( t5  )));
-      //  Tools.printTable2(t6);
         float[][][]t7=relu7.Forward ( poolMax7.Forward( conv7.Forward ( t6  )));
-     //   System.out.println("T7");
-    //    Tools.printTable2(t7);
         float[][][]t8=relu8.Forward ( poolMax8.Forward( conv8.Forward ( t7  )));
-     //   System.out.println("T8");
-    //    Tools.printTable2(t8);
         float[][][]t9=relu9.Forward ( poolMax9.Forward( conv9.Forward ( t8  )));
-     //   System.out.println("T9");
-     //   Tools.printTable2(t9);
         return softmax.nForward( flatten.Forward( t9 ));
     }
 
     public float[][][] backward_( float[] gradient ){
-        //Tools.printTable2( softmax.nBackward( gradient ));
-
         float[][][] t9 =flatten.Backward(  softmax.nBackward( gradient ));
         float[][][] t8 = conv9.Backward ( poolMax9.Backward  ( relu9.Backward   ( t9 )));
         float[][][] t7 = conv8.Backward ( poolMax8.Backward  ( relu8.Backward   ( t8 )));
@@ -147,14 +123,9 @@ public class Task_4_CNN implements Task{
         return conv1.Backward(  poolMax1.Backward   ( relu1.Backward ( t0 )));
     }
 
-
-// *********************
-
     @Override
     public void run() {
         prepare();
-        // 20 X train(5000) + test(10000) = max 94% accuracy
-
         for (int i = 0; i < 1; i++) {
 
             int epochs = 50; //50;
@@ -184,13 +155,13 @@ public class Task_4_CNN implements Task{
 
             float[] Z = forward_(X);
             loss += softmax.delta_Loss( correct_label, Z );
-System.out.println( "loss:" +loss );
+//System.out.println( "loss:" +loss );
             int findClass = tools.getIndexMaxFloat(Z);
             if ( correct_label==findClass ){ accuracy++; }
-System.out.println( "findClass:" +correct_label );
-System.out.println( "Z:" + Arrays.toString( Z ));
+//System.out.println( "findClass:" +correct_label );
+//System.out.println( "Z:" + Arrays.toString( Z ));
             float[] gradient = softmax.gradientCNN( Z, correct_label );
-System.out.println( "gradient:" + Arrays.toString( gradient ) );
+//System.out.println( "gradient:" + Arrays.toString( gradient ) );
             backward_( gradient );
         }
         System.out.println( "Acc: " + ((100.0f*accuracy)/ test_size) + ", Loss: " + loss /*+ ", of: " + test_size*/ );
@@ -215,24 +186,19 @@ System.out.println( "gradient:" + Arrays.toString( gradient ) );
             label_counter++;
             //FORWARD PROPAGATION
 
-            // importImage
             int correct_label=tools.getIndexMaxFloat( testY[i] );
-            float[][][] pxl = testX[i]; //tools.convertToSquare240x240( testX[i] );
+            float[][][] pxl = testX[i];
 
-            // perform convolution 28*28 --> 8x26x26
             out_l = forward_( pxl );
 
-            // compute cross-entropy loss
-            int findClass = tools.getIndexMaxFloat(out_l);//  ()int) Mat.v_argmax(out_l);
+            int findClass = tools.getIndexMaxFloat(out_l);
             if ( correct_label!=findClass ){
                 errors[correct_label][findClass]++;
                 error++;
             } else { accuracy++;  }
-            //accuracy += correct_label == Mat.v_argmax(out_l) ? 1 : 0;
             sum ++;
         }
         System.out.println("\n***********\n** TEST ** errors "+ ( error ) + " .. " + ( 100 * accuracy / test_size )  + "]%\n" );
-        // Tools2.printTable2( errors );
     }
 
 }

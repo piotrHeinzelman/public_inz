@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="27a39dd2-aba0-449c-bdbe-719056abd673" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../TRASH/Tools.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TRASH/copyData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Java03A/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Java03A/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Java03A/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Java03A/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Java03A/Java03A.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../01.MLP/Java/src/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../01.MLP/Java/src/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/02.CNN.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/02.CNN.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/LayerDeep/LayerConv.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/LayerDeep/LayerFlatten.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/LayerDeep/LayerPoolingMax.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/LayerDeep/Neuron2D.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/neu/LayerParent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/neu/LayerSoftmaxMultiClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/neu/Neuron.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/tasks/Task.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/tasks/Task_4_CNN.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/tools/Conv.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../02.CNN/Java/src/out/production/02.CNN/pl/heinzelman/tools/Tools2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/03.DeepCNN.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/LayerDeep/LayerPoolingAvg.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/LayerDeep/_Mat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/MyTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/neu/LayerSigmoidFullConn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/neu/LayerSoftmaxMultiClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/neu/LayerSoftmaxMultiClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/neu/Neuron.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/neu/Neuron.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/tasks/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/tasks/Task_4_CNN.java" beforeDir="false" afterPath="$PROJECT_DIR$/pl/heinzelman/tasks/Task_4_CNN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/tools/Tools.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pl/heinzelman/tools/copyData.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="36RdBAlNB7WeptOe72kAGcpGoe4" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.MyTest.CopyDataToBinRepo240x240_240imgs.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/john/public_inz/03.DeepCNN/Java/src&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-23" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="pl.heinzelman.Main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.heinzelman.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyTest.CopyDataToBinRepo240x240_240imgs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="03.DeepCNN" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.heinzelman.TRASH.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="pl.heinzelman.TRASH" />
+      <option name="MAIN_CLASS_NAME" value="pl.heinzelman.TRASH.MyTest" />
+      <option name="METHOD_NAME" value="CopyDataToBinRepo240x240_240imgs" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="src" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="src" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.MyTest.CopyDataToBinRepo240x240_240imgs" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="27a39dd2-aba0-449c-bdbe-719056abd673" name="Changes" comment="" />
+      <created>1764973179223</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1764973179223</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
