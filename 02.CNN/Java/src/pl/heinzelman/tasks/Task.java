@@ -1,6 +1,4 @@
 package pl.heinzelman.tasks;
-
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -23,6 +21,4 @@ public interface Task {
         long gap = ChronoUnit.MILLIS.between(start, end);
         System.out.println( " -GAP - : " + gap/1000.0 + " [sek.]" );
     }
-
-
 }

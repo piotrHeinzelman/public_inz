@@ -1,15 +1,10 @@
 package pl.heinzelman.neu;
 
-import java.util.Arrays;
-
 public class Neuron {
     private float bias=0.0f;
     private final float[] W;
     private final LayerParent parent;
     private final static float mu=0.0001f;
-
-    public void setBias( float b ) { this.bias=b; }
-    public float getBias(){ return bias; }
 
     public Neuron( int m, LayerParent parent ) {
         this.parent=parent;
@@ -17,9 +12,7 @@ public class Neuron {
     }
 
 
-    public void setWm( int m, float wji ){
-        W[m] = wji;         //
-    }
+    public void setWm( int m, float wji ){ W[m] = wji; }
 
     public float Forward( float[] X ) {
         float res=bias;
@@ -30,7 +23,6 @@ public class Neuron {
     }
 
     public void Backward( float en_x_dFIznI , float eIn ) {
-        // weights
         float[] X = parent.getX();
         for ( int m=0; m<W.length; m++ ) {
             parent.getEout()[m] += ( W[m] * en_x_dFIznI );
@@ -39,27 +31,11 @@ public class Neuron {
     }
 
     public void BackwardBias( float en_x_dFIznI ) {
-        // biases
         bias = bias - ( mu * en_x_dFIznI );
     }
 
-    public void Bias( float db ){
-        bias = bias - ( mu * db );
-    }
-
-
     @Override
     public String toString() {
-        return "N{ W=" + Arrays.toString(W) + '}';
+        return "";
     }
-
-    //@Deprecated
-    public float[] getMyWeight() { return W; }
-
-    public void setWeights(float [] w){
-        for (int i=0;i<W.length;i++){
-            W[i]=w[i];
-        }
-    }
-
 }
