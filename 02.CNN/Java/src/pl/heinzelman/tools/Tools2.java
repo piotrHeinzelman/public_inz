@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class Tools2 {
-
     private static String path="../../../data/";
     private static String testXname="t10k-images-idx3-ubyte";
     private static String testYname="t10k-labels-idx1-ubyte";
@@ -105,18 +104,6 @@ public class Tools2 {
         return C;
     }
 
-    public static String AryToString( float[][]X ){
-        StringBuffer out = new StringBuffer();
-        if (X==null) return "";
-        for (int i=0;i<X.length;i++){
-            out.append("\n[" );
-            for ( int j=0;j<X[0].length;j++ ){
-                out.append( " "+X[i][j]+"," );
-            }
-            out.append("]");
-        }
-        return out.toString();
-    }
 }
 
 
