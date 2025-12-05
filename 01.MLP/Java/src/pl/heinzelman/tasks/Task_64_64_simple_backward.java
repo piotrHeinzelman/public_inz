@@ -24,13 +24,13 @@ public class Task_64_64_simple_backward implements Task{
     private Tools tools = new Tools();
 
     int cepo=0;
-    int numOfEpoch=50;
+    int numOfEpoch=150;
     float[] CSBin_data=new float[numOfEpoch];
 
     @Override
     public void prepare() {
 	Instant start=Instant.now();
-        tools.prepareData( 80 );
+        tools.prepareData( 100 );
 
         testX = tools.getTestX();
         testY = tools.getTestY();
@@ -79,13 +79,13 @@ public class Task_64_64_simple_backward implements Task{
 
                     float[] S_Z = tools.vectorSubstSsubZ( trainY[ ind_ex ], layer3.getZ() );
                     layer3.nBackward( S_Z );
-                    Loss += Tools.crossEntropyMulticlassError( layer3.getZ() );
+                    Loss += Tools.crossEntropyMulticlassError( layer3.getZ(), tools.getIndexMaxFloat(trainY[ ind_ex ]));
                     layer2.nBackward( layer3.getEout() );
                     layer1.nBackward( layer2.getEout() );
                 }
                 CSBin_data[epoch]=Loss/trainX.length;
-
             }
+            System.out.println( Loss );
             //System.out.println( Arrays.toString( layer1.getNeuronWeight(0)));
             //System.out.println( Arrays.toString( layer3.getX()));
             //System.out.println( Arrays.toString( layer3.getZ()));

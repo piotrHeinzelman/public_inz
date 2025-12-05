@@ -1,9 +1,5 @@
 package pl.heinzelman.LayerDeep;
-
-import pl.heinzelman.tools.Conv;
 import pl.heinzelman.tools.Tools;
-
-import java.util.Arrays;
 import java.util.Random;
 
 // https://pavisj.medium.com/convolutions-and-backpropagations-46026a8f5d2c
@@ -66,12 +62,5 @@ public Neuron2D( int m, LayerConv parent ) {
     return Rot180;
     }
 
-    public void setW(float[][] w) {
-        for ( int i=0;i<W.length;i++ ){
-            for ( int j=0;j<W.length;j++ ) {
-            W[i][j] = w[i][j];
-            }
-        }
 
-    }
 }

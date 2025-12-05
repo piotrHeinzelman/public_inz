@@ -8,6 +8,7 @@ import pl.heinzelman.neu.LayerSoftmaxMultiClass;
 import pl.heinzelman.tools.Tools;
 import pl.heinzelman.tools.Tools2;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Task_4_CNN implements Task{
@@ -182,14 +183,17 @@ public class Task_4_CNN implements Task{
             int correct_label = tools.getIndexMaxFloat(trainY[ind_ex]);
 
             float[] Z = forward_(X);
-            loss += softmax.delta_Loss( correct_label );
+            loss += softmax.delta_Loss( correct_label, Z );
+System.out.println( "loss:" +loss );
             int findClass = tools.getIndexMaxFloat(Z);
             if ( correct_label==findClass ){ accuracy++; }
-
+System.out.println( "findClass:" +correct_label );
+System.out.println( "Z:" + Arrays.toString( Z ));
             float[] gradient = softmax.gradientCNN( Z, correct_label );
+System.out.println( "gradient:" + Arrays.toString( gradient ) );
             backward_( gradient );
         }
-        System.out.println( "Acc: " + ((100.0f*accuracy)/ test_size) /*+ ", Loss: " + loss + ", of: " + test_size*/ );
+        System.out.println( "Acc: " + ((100.0f*accuracy)/ test_size) + ", Loss: " + loss /*+ ", of: " + test_size*/ );
         loss=0.0f;
     }
 
@@ -227,7 +231,7 @@ public class Task_4_CNN implements Task{
             //accuracy += correct_label == Mat.v_argmax(out_l) ? 1 : 0;
             sum ++;
         }
-        System.out.println("\n***************************************\n** TEST ** errors "+ ( error ) + " .. " + ( 100 * accuracy / test_size )  + "]%\n" );
+        System.out.println("\n***********\n** TEST ** errors "+ ( error ) + " .. " + ( 100 * accuracy / test_size )  + "]%\n" );
         // Tools2.printTable2( errors );
     }
 
