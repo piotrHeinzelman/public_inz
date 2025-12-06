@@ -5,11 +5,11 @@ import java.time.temporal.ChronoUnit;
 
 public interface Task {
 
-    public void prepare();
+    public void prepare( int percent );
     public void run();
 
-    default public void doTask(){
-        this.prepare();
+    default public void doTask( int percent ){
+        this.prepare( percent );
 
             Instant start = Instant.now();
             this.run();

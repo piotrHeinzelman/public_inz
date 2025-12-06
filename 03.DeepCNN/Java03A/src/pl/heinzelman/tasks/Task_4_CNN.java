@@ -11,6 +11,7 @@ import java.util.Random;
 
 public class Task_4_CNN implements Task{
 
+    private int percent=1;
     private Tools2 tools = new Tools2();
     private float[][][][] testX;
     private float[][] testY;
@@ -25,9 +26,9 @@ public class Task_4_CNN implements Task{
     private LayerSoftmaxMultiClass softmax = new LayerSoftmaxMultiClass( 118*118*20, 2 );
 
 
-    public void prepare() {
-        int dataSize=100;
-        tools.prepareData3C( dataSize );
+    public void prepare( int percent ) {
+        this.percent=percent;
+        tools.prepareData3C( percent );
 
         testX = tools.getTestX();
         testY = tools.getTestY();
@@ -57,12 +58,12 @@ public class Task_4_CNN implements Task{
 
     @Override
     public void run() {
-        prepare();
+        prepare( percent );
         for ( int i=0;i<20;i++) {
-            train(240);
+            train(percent*8 );
             System.out.println( "epoch: " + i );
        }
-        test(240);
+        test(percent*1 );
     }
 
     public void train( int test_size ){
@@ -80,18 +81,17 @@ public class Task_4_CNN implements Task{
             float[][][] X = trainX[ ind_ex ]; //tools.convertToSquare240x240( trainX[ ind_ex ]);
             int correct_label = tools.getIndexMaxFloat(trainY[ind_ex]);
             float[] Z = forward_(X);
-            if ( i==1 ){
-                System.out.println("correct_label:" + correct_label);
-                System.out.println("Z:" + Arrays.toString( Z ));
-            }
+                     if (i==0) System.out.println("I:" + i + "correct_label:" + correct_label + "   Z:" + Arrays.toString( Z ));
 
             loss += softmax.delta_Loss( correct_label );
+
             int findClass = tools.getIndexMaxFloat(Z);
             if ( correct_label==findClass ){ accuracy++; }
 
             float[] gradient = softmax.gradientCNN( Z, correct_label );
             backward_( gradient );
         }
+        System.out.println( loss );
         loss=0.0f;
     }
 
