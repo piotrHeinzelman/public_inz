@@ -6,6 +6,6 @@ public class Main {
     public static void main( String[] args ) {
         Task task;
         task = new Task_4_CNN();
-        task.doTask( 5 );
+        task.doTask( 1 );
     }
 }

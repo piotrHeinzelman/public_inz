@@ -158,7 +158,8 @@ public class LayerConv {
         return 1+(( xsize+padding+padding-filterSize )/stride);
     }
     protected float getMaxRand(){
-        float inputChannelNum = 6; // inputs
+        //float inputChannelNum = 6; // inputs
+        float inputChannelNum =2 * xsize*xsize*channels ; // inputs
         float outputChannelNum = filterNum; //
         return (float)Math.pow((filterNum / ((inputChannelNum + outputChannelNum) * (filterSize * filterSize))), .5f);
     }

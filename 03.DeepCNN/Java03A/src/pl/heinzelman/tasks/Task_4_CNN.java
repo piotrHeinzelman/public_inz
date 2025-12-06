@@ -3,6 +3,7 @@ package pl.heinzelman.tasks;
 import pl.heinzelman.LayerDeep.LayerConv;
 import pl.heinzelman.LayerDeep.LayerFlatten;
 import pl.heinzelman.LayerDeep.LayerPoolingMax;
+import pl.heinzelman.LayerDeep.LayerReLU;
 import pl.heinzelman.neu.LayerSoftmaxMultiClass;
 import pl.heinzelman.tools.Tools2;
 
@@ -19,11 +20,63 @@ public class Task_4_CNN implements Task{
     private float[][] trainY;
     private int[][] errors = new int [2][2];
 
-
+/*
     private LayerConv conv = new LayerConv( 5 , 20, null, null  );
     private LayerPoolingMax poolMax = new LayerPoolingMax(2,2);
     private LayerFlatten flatten = new LayerFlatten();
     private LayerSoftmaxMultiClass softmax = new LayerSoftmaxMultiClass( 118*118*20, 2 );
+*/
+
+    private LayerConv conv1 = new LayerConv( 7 , 32, null, null  );
+    private LayerPoolingMax poolMax1 = new LayerPoolingMax(2,2);
+    private LayerReLU      relu1 = new LayerReLU();
+
+
+    private LayerConv conv2 = new LayerConv( 5 , 64, null, null  );
+    private LayerPoolingMax poolMax2 = new LayerPoolingMax(2,2);
+    private LayerReLU      relu2 = new LayerReLU();
+
+
+    private LayerConv conv3 = new LayerConv( 3 , 128, null, null  );
+    private LayerPoolingMax poolMax3 = new LayerPoolingMax(2,2);
+    private LayerReLU      relu3 = new LayerReLU();
+
+    private LayerConv conv4 = new LayerConv( 3 , 256, null, null  );
+    private LayerPoolingMax poolMax4 = new LayerPoolingMax(2,2);
+    private LayerReLU      relu4 = new LayerReLU();
+
+
+    private LayerConv conv5 = new LayerConv( 1 , 256, null, null  );
+    private LayerPoolingMax poolMax5 = new LayerPoolingMax(2,2);
+    private LayerReLU      relu5 = new LayerReLU();
+
+
+    private LayerConv conv6 = new LayerConv( 1 , 18, null, null  );
+    private LayerPoolingMax poolMax6 = new LayerPoolingMax(2,2);
+    private LayerReLU      relu6 = new LayerReLU();
+
+
+
+    private LayerConv conv7 = new LayerConv( 1 , 8, null, null  );
+    private LayerPoolingMax poolMax7 = new LayerPoolingMax(1,1);
+    private LayerReLU      relu7 = new LayerReLU();
+
+
+
+    private LayerConv conv8 = new LayerConv( 1 , 6, null, null  );
+    private LayerPoolingMax poolMax8 = new LayerPoolingMax(1,1);
+    private LayerReLU      relu8 = new LayerReLU();
+
+
+    private LayerConv conv9 = new LayerConv( 1 , 2, null, null  );
+    private LayerPoolingMax poolMax9 = new LayerPoolingMax(1,1);
+    private LayerReLU      relu9 = new LayerReLU();
+
+
+
+    private LayerFlatten flatten = new LayerFlatten();
+    private LayerSoftmaxMultiClass softmax = new LayerSoftmaxMultiClass( 2, 2 );
+
 
 
     public void prepare( int percent ) {
@@ -40,18 +93,67 @@ public class Task_4_CNN implements Task{
         tools.saveXasJPG( testX[0] );
         System.out.println( "CLASS:" + testY[0][0] );
         }
+        /*
         conv.setUpByX( 3,240);
+         */
+
+        conv1.setUpByX( 3,240 );
+        conv2.setUpByX(32,117);
+        conv3.setUpByX(64,56);
+        conv4.setUpByX(128,27);
+        conv5.setUpByX(256,12);
+        conv6.setUpByX(256,6);
+        conv7.setUpByX(18,3);
+        conv8.setUpByX(8,1);
+        conv9.setUpByX(6,1);
+
     }
 
-
-    public float[] forward_( float[][][] X ){
+/*
+    public float[] forward_X( float[][][] X ){
         float[][][]  oneX = X;
         return softmax.nForward( flatten.Forward( poolMax.Forward( conv.Forward( oneX ))));
     }
 
-    public float[][][] backward_( float[] gradient ){
+    public float[][][] backward_X( float[] gradient ){
         return conv.Backward(  poolMax.Backward( flatten.Backward(  softmax.nBackward( gradient ))));
     }
+*/
+    public float[] forward_( float[][][] X ){
+        //System.out.println(   Arrays.toString( X[0][120]  ) );
+        float[][][]t1=relu1.Forward ( poolMax1.Forward( conv1.Forward( X )));
+        float[][][]t2=relu2.Forward ( poolMax2.Forward( conv2.Forward ( t1  )));
+        float[][][]t3=relu3.Forward ( poolMax3.Forward( conv3.Forward ( t2  )));
+        float[][][]t4=relu4.Forward ( poolMax4.Forward( conv4.Forward ( t3  )));
+        float[][][]t5=relu5.Forward ( poolMax5.Forward( conv5.Forward ( t4  )));
+        float[][][]t6=relu6.Forward ( poolMax6.Forward( conv6.Forward ( t5  )));
+        float[][][]t7=relu7.Forward ( poolMax7.Forward( conv7.Forward ( t6  )));
+        float[][][]t8=relu8.Forward ( poolMax8.Forward( conv8.Forward ( t7  )));
+        float[][][]t9=relu9.Forward ( poolMax9.Forward( conv9.Forward ( t8  )));
+        float[] flat = flatten.Forward(t9);
+        System.out.println( "Flat: " + Arrays.toString( flat ) );
+        float[] soft = softmax.nForward(flat);
+        //System.out.println(   Arrays.toString( soft ) );
+        return soft;
+    }
+
+    public float[][][] backward_( float[] gradient ){
+        //   System.out.println(Arrays.toString( gradient ) );
+        float[][][] t9 =flatten.Backward(  softmax.nBackward( gradient ));
+        float[][][] t8 = conv9.Backward ( poolMax9.Backward  ( relu9.Backward   ( t9 )));
+        float[][][] t7 = conv8.Backward ( poolMax8.Backward  ( relu8.Backward   ( t8 )));
+        float[][][] t6 = conv7.Backward ( poolMax7.Backward  ( relu7.Backward   ( t7 )));
+        float[][][] t5 = conv6.Backward ( poolMax6.Backward  ( relu6.Backward   ( t6 )));
+        float[][][] t4 = conv5.Backward ( poolMax5.Backward  ( relu5.Backward   ( t5 )));
+        float[][][] t3 = conv4.Backward ( poolMax4.Backward  ( relu4.Backward   ( t4 )));
+        float[][][] t2 = conv3.Backward ( poolMax3.Backward  ( relu3.Backward   ( t3 )));
+        float[][][] t1 = conv2.Backward ( poolMax2.Backward  ( relu2.Backward   ( t2 )));
+        float[][][] t0 = conv1.Backward ( poolMax1.Backward  ( relu1.Backward   ( t1 )));
+
+        return conv1.Backward(  poolMax1.Backward   ( relu1.Backward ( t0 )));
+    }
+
+
 
 
 // *********************
