@@ -36,7 +36,7 @@ else:
 
 
 # params
-epochs = 50
+epochs = 20
 percent = 30
 num_classes = 2
 
@@ -59,8 +59,8 @@ def readFileY ( fileName ):
 
 start1=time.time()
 
-trainX = readFileX ('../../../../inz_Hidden/SAS/out.bin' )
-trainY = readFileY ('../../../../inz_Hidden/SAS/out.class' )
+trainX = readFileX ('../../../inz_Hidden/SAS/out.bin' )
+trainY = readFileY ('../../../inz_Hidden/SAS/out.class' )
 
 trainX = trainX.astype("float32")
 trainY = trainY.astype("int")
@@ -131,58 +131,7 @@ class CNN(nn.Module):
 
 
 
-       # 2nd convolutional layer
-       # self.conv2 = nn.Conv2d(in_channels=8, out_channels=16, kernel_size=3, padding=1)
-       # Fully connected layer
        self.fc1 = nn.Linear( 2 , num_classes ) #  self.fc1 = nn.Linear( 64, num_classes) in, out
-#       self.sm1 =  nn.Softmax(1)
-
-#    \item inputLayer(240, 240, 3)
-#    \item convolution2dLayer(7,32)
-#    \item batchNormalizationLayer
-#    \item reluLayer
-#    \item maxPooling2dLayer(2, Stride=2)
-
-#    \item convolution2dLayer(5,64)
-#    \item batchNormalizationLayer
-#    \item reluLayer
-#    \item maxPooling2dLayer(2, Stride=2)
-
-#    \item convolution2dLayer(3,128)
-#    \item batchNormalizationLayer
-#    \item reluLayer
-#    \item maxPooling2dLayer(2, Stride=2)
-
-#    \item convolution2dLayer(3,256)
-#    \item batchNormalizationLayer
-#    \item reluLayer
-#    \item maxPooling2dLayer(2, Stride=2)
-
-#    \item convolution2dLayer(1,256)
-#    \item batchNormalizationLayer
-
-#    \item convolution2dLayer(1,18, Stride=2)
-#    \item batchNormalizationLayer
-#    \item reluLayer(Name="Lay")
-#    \item maxPooling2dLayer(2)
-
-#    \item convolution2dLayer(1,8, Stride=2)
-#    \item batchNormalizationLayer
-#    \item reluLayer
-#    \item maxPooling2dLayer(2)
-
-#    \item convolution2dLayer(1,6, Stride=2)
-#    \item batchNormalizationLayer
-#    \item reluLayer
-#    \item maxPooling2dLayer(2)
-
-#    \item convolution2dLayer(1,2)
-#    \item batchNormalizationLayer
-#    \item reluLayer
-
-#    \item flattenLayer
-#    \item softmaxLayer
-
 
 
    def forward(self, x):
