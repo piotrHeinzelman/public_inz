@@ -43,26 +43,14 @@ public class LayerReLU {
     }
 
 
-
-
-
-
-
-
     public float[][][] Backward( float[][][] delta ){ // delta = (s-z)*d....
-
-
-        System.out.println(  "C:" + W + ", delta C:" + delta[0].length + ", dX C:"+dX[0].length );
-        //System.out.println(  "C:" + C + ", W:" + W + ", H:" + H );
+        int delta_size=delta[0].length;
         float[][][] OUT = new float[ C ][ W ][ H ];
-        //C=delta.length;
-        //H=delta[0].length;
-        //W=delta[0][0].length;
         for (int c=0;c<C;c++ ){
             for (int i=0;i<H;i++){
                 for (int j=0;j<W;j++) {
                     // System.out.println( "c:" + c + ", i:" + i + ", j:" + j + ", C:" + C + ", W:" + W + ", H:" + H );
-                    OUT[c][i][j] = /*delta[c][i][j] * */   dX[c][i][j];
+                    if (W<delta_size && H<delta_size) { OUT[c][i][j] = delta[c][i][j] * dX[c][i][j]; }
                 }
             }
         }

@@ -196,7 +196,7 @@ public class Task_4_CNN implements Task{
             float[][][] X = trainX[ ind_ex ]; //tools.convertToSquare240x240( trainX[ ind_ex ]);
             int correct_label = tools.getIndexMaxFloat(trainY[ind_ex]);
             float[] Z = forward_(X);
-                  //   if (i==0) System.out.println("I:" + i + "correct_label:" + correct_label + "   Z:" + Arrays.toString( Z ));
+                     if (i==0) System.out.println("I:" + i + "correct_label:" + correct_label + "   Z:" + Arrays.toString( Z ));
 
             loss += softmax.delta_Loss( correct_label );
 
@@ -204,7 +204,7 @@ public class Task_4_CNN implements Task{
             if ( correct_label==findClass ){ accuracy++; }
 
             float[] gradient = softmax.gradientCNN( Z, correct_label );
-            backward_( gradient );
+            backward_(gradient);
         }
         System.out.println( loss );
         loss=0.0f;
