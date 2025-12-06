@@ -27,6 +27,15 @@ public class LayerConv {
         this.stride = ( stride==null ) ? 1 : stride;
     }
 
+    public void setUpByX( int inchannel, int inputSize ) {
+        this.channels = inchannel;
+        this.filterNum = filterForChannel*channels;
+        this.xsize = inputSize;
+        this.ysize = getYSize();
+        initAry();
+        initFilters();
+    }
+
     private void initFilters(){
         this.filters = new Neuron2D[ filterNum ];
         Random rand = new Random();

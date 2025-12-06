@@ -11,37 +11,38 @@ import java.util.Random;
 public class Task_4_CNN implements Task{
 
     private Tools2 tools = new Tools2();
-    private float[][] testX;
+    private float[][][][] testX;
     private float[][] testY;
-    private float[][] trainX;
+    private float[][][][] trainX;
     private float[][] trainY;
-    private int[][] errors = new int [10][10];
+    private int[][] errors = new int [2][2];
 
 
     private LayerConv conv = new LayerConv( 5 , 20, null, null  );
     private LayerPoolingMax poolMax = new LayerPoolingMax(2,2);
     private LayerFlatten flatten = new LayerFlatten();
-    private LayerSoftmaxMultiClass softmax = new LayerSoftmaxMultiClass( 12*12*20, 10 );
+    private LayerSoftmaxMultiClass softmax = new LayerSoftmaxMultiClass( 118*118*20, 2 );
 
 
     public void prepare() {
         int dataSize=80;
-        tools.prepareData( dataSize );
+        tools.prepareData3C( dataSize );
 
         testX = tools.getTestX();
         testY = tools.getTestY();
         trainX = tools.getTrainX();
         trainY = tools.getTrainY();
 
-        float[][][] oneX = new float[1][28][28];
-        oneX[0] = tools.convertToSquare28x28( trainX[0] );
-        conv.setUpByX( oneX );
+        //float[][][] oneX = new float[3][240][240];
+        //oneX[0] = tools.convertToSquare240x240( trainX[0] );
+        conv.setUpByX( 3,240);
     }
 
 
-    public float[] forward_( float[][] X ){
-        float[][][] oneX = new float[1][][];
-        oneX[0]=X;
+    public float[] forward_( float[][][] X ){
+        //float[][][] oneX = new float[3][][];
+        //oneX[0]=X;
+        float[][][]  oneX = X;
         return softmax.nForward( flatten.Forward( poolMax.Forward( conv.Forward( oneX ))));
     }
 
@@ -56,10 +57,10 @@ public class Task_4_CNN implements Task{
     public void run() {
         prepare();
         for ( int i=0;i<20;i++) {
-            train(48000);
+            train(240);
             System.out.println( "epoch: " + i );
        }
-        test(8000);
+        test(240);
     }
 
     public void train( int test_size ){
@@ -74,7 +75,7 @@ public class Task_4_CNN implements Task{
 
             int ind_ex =  (int) ( rand.nextFloat()*test_size );
 
-            float[][] X = tools.convertToSquare28x28( trainX[ind_ex] );
+            float[][][] X = trainX[ ind_ex ]; //tools.convertToSquare240x240( trainX[ ind_ex ]);
             int correct_label = tools.getIndexMaxFloat(trainY[ind_ex]);
 
             float[] Z = forward_(X);
@@ -93,7 +94,7 @@ public class Task_4_CNN implements Task{
 
     public  void test ( int test_size  )   {
         Random rand = new Random();
-        int[][] errors = new int[10][10];
+        int[][] errors = new int[2][2];
         int error = 0;
 
         int label_counter = 0;
@@ -106,7 +107,7 @@ public class Task_4_CNN implements Task{
             label_counter++;
             //FORWARD PROPAGATION
             int correct_label=tools.getIndexMaxFloat( testY[i] );
-            float[][] pxl = tools.convertToSquare28x28( testX[i] );
+            float[][][] pxl = testX[i]; //tools.convertToSquare240x240(new float[][]{testX[i]});
 
             out_l = forward_( pxl );
             int findClass = tools.getIndexMaxFloat(out_l);

@@ -1,0 +1,7 @@
+
+cd src/
+
+javac pl/heinzelman/Main.java -d ../out
+cd ../out
+
+java pl.heinzelman.Main

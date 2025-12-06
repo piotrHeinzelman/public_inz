@@ -1,8 +1,5 @@
 package pl.heinzelman.LayerDeep;
 
-import java.sql.SQLOutput;
-import java.util.Random;
-
 public class LayerPoolingMax {
     protected float[][][] X;
     protected float[][][] dX;
