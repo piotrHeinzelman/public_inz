@@ -18,11 +18,12 @@ public class LayerFlatten {
                     }
                 }
             }
+        //System.out.println( "FORW:" + Z.length );
         return Z;
     }
 
     public float[][][] Backward( float[] delta ){
-
+        //System.out.println( "BACK:" + delta.length );
         float[][][] OUT = new float[ channels ][ xsize ][ xsize ];
         for (int c=0;c<channels;c++){
             for (int i=0;i<xsize;i++){

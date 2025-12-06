@@ -44,8 +44,8 @@ public class LayerReLU {
     }
 
 
-
-    public float[][][] Backward( float[][][] delta ){ // delta = (s-z)*d....
+    public float[][][] Backward( float[][][] delta ){ return delta; }
+    public float[][][] BackwardOFF( float[][][] delta ){ // delta = (s-z)*d....
         int delta_size=delta[0].length;
         float[][][] OUT = new float[ C ][ W ][ H ];
         for (int c=0;c<C;c++ ){
