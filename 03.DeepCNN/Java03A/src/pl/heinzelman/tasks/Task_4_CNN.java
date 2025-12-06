@@ -25,13 +25,17 @@ public class Task_4_CNN implements Task{
 
 
     public void prepare() {
-        int dataSize=80;
+        int dataSize=100;
         tools.prepareData3C( dataSize );
 
         testX = tools.getTestX();
         testY = tools.getTestY();
         trainX = tools.getTrainX();
         trainY = tools.getTrainY();
+
+        // check data
+        //tools.saveXasJPG( testX[1] );
+        //System.out.println( testY[1][0] );
 
         //float[][][] oneX = new float[3][240][240];
         //oneX[0] = tools.convertToSquare240x240( trainX[0] );

@@ -206,6 +206,27 @@ public class Tools2 {
         }
         return C;
     }
+
+
+    public static saveXasJPG( float[][][] tesor ){
+        int H=tensor[0].length;
+        int W=tensor[0][0].length;
+        BufferedImage image = new BufferedImage( W, H, TYPE_INT_RGB ); // 	TYPE_3BYTE_BGR
+
+        File file = new File("image.png");
+        for ( int i=0; i<H; i++){
+            for (int j=0;j<W;j++){
+                int pixelRGB=tesor[0][i][j]*256*256 + tesor[1][i][j]*256 + tesor[2][i][j];
+                image.setRGB( j, i, pixelRGB );
+            }
+        }
+        try {
+            ImageIO.write(image ,  "png", file );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
 
 
