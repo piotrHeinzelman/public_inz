@@ -50,7 +50,7 @@ public class Tools2 {
                         for (int c = 0; c < C; c++) {
 
                             byte val =  trainXfile[n *W*H*C + h * W*C + w*C + c];
-                            float fval = 1f*val;//*(1f/127f);
+                            float fval = (1f/127f)*val;//*(1f/127f);
                             //System.out.println( fval );
                             trainX[n][c][h][w] =  fval;
                             testX[n][c][h][w] = fval;
@@ -104,14 +104,13 @@ public class Tools2 {
     public void saveXasJPG( float[][][] tensor ){
         int H=tensor[0].length;
         int W=tensor[0][0].length;
-        // System.out.println( "H:" + H + ", W:" + W + " :: " + ( tensor[0][120][120] / 127 )  );
+        // System.out.println( "H:" + H + ", W:" + W + " :: " + ( tensor[0][120][120] )  );
         BufferedImage image = new BufferedImage( W, H, TYPE_INT_RGB ); // 	TYPE_3BYTE_BGR
 
         File file = new File("image.png");
         for ( int i=0; i<H; i++){
             for (int j=0;j<W;j++){
-                int pixelRGB = (int)( (255-tensor[0][i][j])*2  *256*256 + (255-tensor[1][i][j])*2 *256 + (255-tensor[2][i][j])*2 );
-                  //pixelRGB = (int)( 128*256*256 + 128*256 + 128);
+                int pixelRGB = (int)( (255-tensor[0][i][j]*127)*2  *256*256 + (255-tensor[1][i][j]*127)*2 *256 + (255-tensor[2][i][j]*127)*2 );
                 image.setRGB( j, i, pixelRGB );
             }
         }

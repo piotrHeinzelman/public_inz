@@ -6,6 +6,7 @@ import pl.heinzelman.LayerDeep.LayerPoolingMax;
 import pl.heinzelman.neu.LayerSoftmaxMultiClass;
 import pl.heinzelman.tools.Tools2;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Task_4_CNN implements Task{
@@ -33,19 +34,16 @@ public class Task_4_CNN implements Task{
         trainX = tools.getTrainX();
         trainY = tools.getTrainY();
 
+        if ( false ) {
         // check data
-        //tools.saveXasJPG( testX[1] );
-        //System.out.println( testY[1][0] );
-
-        //float[][][] oneX = new float[3][240][240];
-        //oneX[0] = tools.convertToSquare240x240( trainX[0] );
+        tools.saveXasJPG( testX[0] );
+        System.out.println( "CLASS:" + testY[0][0] );
+        }
         conv.setUpByX( 3,240);
     }
 
 
     public float[] forward_( float[][][] X ){
-        //float[][][] oneX = new float[3][][];
-        //oneX[0]=X;
         float[][][]  oneX = X;
         return softmax.nForward( flatten.Forward( poolMax.Forward( conv.Forward( oneX ))));
     }
@@ -81,8 +79,12 @@ public class Task_4_CNN implements Task{
 
             float[][][] X = trainX[ ind_ex ]; //tools.convertToSquare240x240( trainX[ ind_ex ]);
             int correct_label = tools.getIndexMaxFloat(trainY[ind_ex]);
-
             float[] Z = forward_(X);
+            if ( i==1 ){
+                System.out.println("correct_label:" + correct_label);
+                System.out.println("Z:" + Arrays.toString( Z ));
+            }
+
             loss += softmax.delta_Loss( correct_label );
             int findClass = tools.getIndexMaxFloat(Z);
             if ( correct_label==findClass ){ accuracy++; }
