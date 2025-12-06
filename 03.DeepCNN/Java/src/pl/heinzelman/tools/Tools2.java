@@ -3,51 +3,13 @@ package pl.heinzelman.tools;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.Arrays;
-
-
-
-/*
-
-
-def readFileX ( fileName ):
-    file=open( fileName, 'rb' )
-    data=np.fromfile( fileName, np.uint8, percent*8*240*240*3, '')
-    data=data.reshape(percent*8, 240*240*3)
-    data=(data/255)
-    file.close()
-    return data
-
-def readFileY ( fileName ):
-    file=open( fileName, 'rb' )
-    len=percent*8
-    data=np.fromfile( fileName, np.uint8, len, '' )
-    file.close()
-    return data
-
-
-start1=time.time()
-
-trainX = readFileX ('../../../../inz_Hidden/SAS/out.bin' )
-trainY = readFileY ('../../../../inz_Hidden/SAS/out.class' )
-
-trainX = trainX.astype("float32")
-trainY = trainY.astype("int")
-
-trainX = trainX.reshape(percent*8, 3, 240,240).astype("float32") # / 255
-#trainY = trainY.reshape(percent*8)
-
-
-
-*/
-
 
 
 
 public class Tools2 {
 
-    private static String path="../../data/";
+    private static String path="../../../data/";
     private static String testXname="output.bin";
     private static String testYname="output.class";
     private static String trainXname="output.bin";
@@ -82,8 +44,6 @@ public class Tools2 {
                 trainY[i][0] = 1.0f * trainYfile[i*2 + 0]  ;
                 trainY[i][1] = 1.0f * trainYfile[i*2 + 1];
             }
-            //System.out.println( trainY[4][0]  + " : " +trainY[4][1]  );
-
             byte[] trainXfile = loadBin(path + trainXname, 0, percent*8 * 240*240*3 );// offset=16 size=percent*784*600
 
             trainX=new float[percent*8][3][240][240];
@@ -94,14 +54,9 @@ public class Tools2 {
 
                             byte val =  trainXfile[n *W*H*C + h * W*C + w*C + c];
 
-                            //System.out.println( val );
-                           trainX[n][c][h][w] = 0.01f*val;///255.0f;///256.0f; //0-1
-                          // System.out.println(  trainX[n][c][h][w] );
-                         //   out += " " + Byte.toUnsignedInt(val);
-
+                           trainX[n][c][h][w] = 0.01f*val;
                       }
                     }
-                   // System.out.println(out);
                 }
             }
 
@@ -115,14 +70,9 @@ public class Tools2 {
 
                             byte val =  trainXfile[n *W*H*C + h * W*C + w*C + c];
 
-                            //System.out.println( val );
-                            testX[n][c][h][w] = 0.01f*val;///255.0f;///256.0f; //0-1
-                            // System.out.println(  trainX[n][c][h][w] );
-                            //   out += " " + Byte.toUnsignedInt(val);
-
+                            testX[n][c][h][w] = 0.01f*val;
                         }
                     }
-                    // System.out.println(out);
                 }
             }
         } catch (IOException e) {
@@ -151,30 +101,6 @@ public class Tools2 {
                 testY[i][ testYfile[i] ]=1.0f;
             }
 
-/*
-            byte[] trainXfile = loadBin(path + trainXname, 16, percent * 240*240 * 8);// offset=16 size=percent*784*600
-            trainX=new float[percent*8][240*240*3];
-            for (int i=0;i<percent*8;i++) {
-                int off=i*240;
-                for (int j=0;j<240*3;j++){
-                    trainX[i][j]=Byte.toUnsignedInt( trainXfile[off+j] )/254.0f;///256.0f; //0-1
-                    //System.out.println( trainX[i][j] );
-                }
-            }
-
-            byte[] testXfile =   loadBin( path + testXname,  16, percent*240*240*8 );   // offset=16, size=percent*784*100
-            testX=new float[percent*8][240*240];
-            for (int i=0;i<percent*8;i++) {
-                int off=i*240;
-                for (int j=0;j<240*3;j++){
-                    testX[i][j]=Byte.toUnsignedInt( testXfile[off+j] )/254.0f;///256.0f;
-                }
-            }
-*/
-            // show data:
-            //for ( int i=0;i<100;i++ ) {
-            //    saveVectorAsImg( trainX[i], trainYfile[i] +"_key_is_" + i );
-            //}
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -215,9 +141,6 @@ public class Tools2 {
     public float[][][][] getTrainX() { return trainX; }
     public float[][][][] getTestX()  { return testX;  }
 
-    public  String AryToString( float[]X ){
-        return Arrays.toString( X );
-    }
     public  String AryToString( float[][]X ){
         StringBuffer out = new StringBuffer();
         out.append("[");
@@ -227,59 +150,59 @@ public class Tools2 {
         out.append("]");
         return out.toString();
     }
-    public  String AryToString( float[][][]X ){
-        StringBuffer out = new StringBuffer();
-        out.append("[");
-        for (int i=0;i<X.length;i++) {
-            out.append(i+": " + AryToString( X[i] ) + "\n");
-        }
-        out.append("]");
-        return out.toString();
-    }
+
+
 
     public float[][] gradientCNN( float[][] out_l, int correct_label ){
-
-        //BACKWARD PROPAGATION --- STOCHASTIC GRADIENT DESCENT
-        //gradient of the cross entropy loss
-
         float[][] gradient=new float[1][out_l.length]; //Mat.v_zeros(10);
         for (int i=0;i< out_l.length;i++){ gradient[0][i]=0.0f; }
         gradient[0][correct_label]=-1/out_l[0][correct_label];
         return gradient;
     }
 
+    public float[] gradientCNN( float[] out_l, int correct_label ){
+        float[] gradient=new float[out_l.length]; //Mat.v_zeros(10);
+        for (int i=0;i< out_l.length;i++){ gradient[i]=0.0f; }
+        gradient[correct_label]=-1/out_l[correct_label];
+        return gradient;
+    }
+
     public float getCeLoss_CNN( float [] out_l , int correct_label ){
-        //ce_loss += (float) -Math.log(out_l[0][correct_label]);
         return (float) -Math.log(out_l[correct_label]);
     }
 
 
 
-    public  void echo ( Number n ) { System.out.println( n.toString() ); }
-    public  void echo ( float[] v  ) { System.out.println( Tools.AryToString( v ) ); }
-    public  void echo ( float[][] v  ) { System.out.println( Tools.AryToString( v ) ); }
-    public  void echo ( float[][][] v  ) { System.out.println( Tools.AryToString( v ) ); }
 
-    public  void echo ( String name, Number n ) { System.out.println( name + " : " + n.toString() ); }
-    public  void echo ( String name, float[] v  ) { System.out.println( name + " : " + Tools.AryToString( v ) ); }
-    public  void echo ( String name, float[][] v  ) { System.out.println( name + " : " + Tools.AryToString( v ) ); }
-    public  void echo ( String name, float[][][] v  ) { System.out.println( name + " : " + Tools.AryToString( v ) ); }
 
-    public static void printTable2( int[][] table ){
-        System.out.println( " incorrect class  ->  [0]  |  [1]  |  [2]  |  [3]  |  [4]  |  [5]  |  [6]  |  [7]  |  [8]  |  [9]\n" );
-        for (int y=0;y<table[0].length;y++){
-            System.out.println("True class    ("+y+")   " + printRow3( table[y] ));
+
+
+
+    public String AryToString ( float[][][] T ){
+        StringBuffer out = new StringBuffer();
+        if (T==null) return "";
+        for ( int i=0;i<T.length;i++ ){
+            out.append( AryToString( T[i] ));
         }
+        return out.toString();
     }
 
-    public static String printRow3( int[] row ){
-        String out="";
-        for (int x=0;x<row.length;x++){
-            out += "  "+ ((row[x])>9 ? "" : " " ) +  ( row[x]==0 ? "." : row[x] )   +"   |";
-        }
-        return ( out );
-    }
 
+
+
+
+
+
+
+    public static float[][] aryAdd( float[][] A, float[][] B){
+        float [][] C = new float[A.length][A[0].length];
+        for ( int i=0;i<A.length;i++ ){
+            for ( int j=0;j<A[0].length;j++ ) {
+                C[i][j] = A[i][j]+B[i][j];
+            }
+        }
+        return C;
+    }
 }
 
 

@@ -142,7 +142,7 @@ public class LayerSoftmaxMultiClass implements LayerParent {
     }
 
     public float[] gradientCNN( float[] Z, int correct_label ){
-        float si=Z[correct_label];  if (si<0.0000000001f) { si=0.0000001f;}
+        float si=Z[correct_label];  if (si*si<0.0000000001f) { si+=0.0000001f;}
         float[] gradient=new float[Z.length];
         for (int i=0;i<Z.length;i++){ gradient[i]= -si * Z[i]; }
         gradient[correct_label]= si*(1-si);

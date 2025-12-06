@@ -107,7 +107,7 @@ public class Task_4_CNN implements Task{
     }
 
     public float[][][] backward_( float[] gradient ){
-        System.out.println(Arrays.toString( gradient ) );
+     //   System.out.println(Arrays.toString( gradient ) );
         float[][][] t9 =flatten.Backward(  softmax.nBackward( gradient ));
         float[][][] t8 = conv9.Backward ( poolMax9.Backward  ( relu9.Backward   ( t9 )));
         float[][][] t7 = conv8.Backward ( poolMax8.Backward  ( relu8.Backward   ( t8 )));
@@ -154,13 +154,14 @@ public class Task_4_CNN implements Task{
             float[] Z = forward_(X);
             loss += softmax.delta_Loss( correct_label, Z );
 //System.out.println( "loss:" +loss );
-            int findClass = tools.getIndexMaxFloat(Z);
+            int findClass = 0;
+                 if (Z[1]>Z[0]) { findClass=1; }//tools.getIndexMaxFloat(Z);
             if ( correct_label==findClass ){ accuracy++; }
 //System.out.println( "findClass:" +correct_label );
 //System.out.println( "Z:" + Arrays.toString( Z ));
-            float[] gradient = softmax.gradientCNN( Z, correct_label );
+            float[] gradient =  tools.gradientCNN(Z, correct_label); //softmax.gradientCNN( Z, correct_label );
 
-System.out.println( "gradient:" + Arrays.toString( gradient ) );
+//System.out.println( "gradient:" + Arrays.toString( gradient ) );
             backward_( gradient );
         }
         System.out.println( "Acc: " + ((100.0f*accuracy)/ test_size) + ", Loss: " + loss /*+ ", of: " + test_size*/ );

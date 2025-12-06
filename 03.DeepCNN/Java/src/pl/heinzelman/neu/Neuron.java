@@ -6,7 +6,7 @@ public class Neuron {
     private float bias=0.0f;
     private final float[] W;
     private final LayerParent parent;
-    private final static float mu=0.00001f;
+    private final static float mu=0.0001f;
 
     public Neuron( int m, LayerParent parent ) {
         this.parent=parent;
