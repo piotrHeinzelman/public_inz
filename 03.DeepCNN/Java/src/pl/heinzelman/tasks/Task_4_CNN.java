@@ -107,8 +107,9 @@ public class Task_4_CNN implements Task{
         conv5.setUpByX(256,12);
         conv6.setUpByX(256,6);
         conv7.setUpByX(18,3);
-        conv8.setUpByX(8,1);
-        conv9.setUpByX(6,1);
+        conv8.setUpByX(8,3);
+        conv9.setUpByX(6,3);
+
 
     }
 

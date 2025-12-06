@@ -9,7 +9,7 @@ public class LayerFlatten {
     public float[] Forward ( float[][][] _x ) {
         channels= _x.length;
         xsize=_x[0].length;
-        int index=0;
+
         float[] Z = new float[ channels*xsize*xsize ];
             for (int c=0;c<channels;c++){
                 for (int i=0;i<xsize;i++){
@@ -22,6 +22,7 @@ public class LayerFlatten {
     }
 
     public float[][][] Backward( float[] delta ){
+
         float[][][] OUT = new float[ channels ][ xsize ][ xsize ];
         for (int c=0;c<channels;c++){
             for (int i=0;i<xsize;i++){

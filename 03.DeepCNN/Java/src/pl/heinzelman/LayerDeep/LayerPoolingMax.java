@@ -57,7 +57,7 @@ public class LayerPoolingMax {
                             }
                         }
                         Z[c][i][j]=max;
-                        dX[c][i+maxX][j+maxY]=1f;
+                        dX[c][i*filterSize +maxX][j*filterSize +maxY]=1f;
                     }
                 }
             }
@@ -78,7 +78,7 @@ public class LayerPoolingMax {
 
                     for (int x=0;x<filterSize;x++){
                         for (int y=0;y<filterSize;y++){
-                            OUT[c][i+x][j+y] = delta[c][i][j] * dX[c][i+x][j+y];
+                            OUT[c][i*filterSize +x][j*filterSize +y] = delta[c][i][j] * dX[c][i*filterSize  +x][j*filterSize +y];
                         }
                     }
 
