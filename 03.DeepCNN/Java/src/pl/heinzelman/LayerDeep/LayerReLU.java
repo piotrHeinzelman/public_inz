@@ -49,8 +49,11 @@ public class LayerReLU {
         for (int c=0;c<C;c++ ){
             for (int i=0;i<H;i++){
                 for (int j=0;j<W;j++) {
-                    // System.out.println( "c:" + c + ", i:" + i + ", j:" + j + ", C:" + C + ", W:" + W + ", H:" + H );
-                    if (W<delta_size && H<delta_size) { OUT[c][i][j] = delta[c][i][j] * dX[c][i][j]; }
+                     if ( W <= delta_size )  OUT[c][i][j] = delta[c][i][j] * dX[c][i][j];
+                     else {
+                         OUT[c][i][j] = dX[c][i][j];
+                         System.out.println( "c:" + c + ", i:" + i + ", j:" + j + ", C:" + H + ", W:" + dX[0][0].length + ", deltaW:" + delta[0][0].length );
+                       }
                 }
             }
         }

@@ -143,6 +143,10 @@ public float[][] getTrainY() { return trainY; }
         return C;
     }
 
+    public void shape(float[][][] tensor){
+        System.out.println( "size:" + tensor.length + ", " + tensor[0].length + ", "+tensor[0][0].length  );
+    }
+
 }
 
 

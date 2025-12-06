@@ -13,11 +13,11 @@ public class LayerPoolingMax {
 
     public LayerPoolingMax(int filterSize, Integer stride ) {
         this.filterSize = filterSize;
-        this.stride = (stride==null) ? 1 : stride;
+        this.stride = filterSize ; //(stride==null) ? 1 : stride;
     }
 
     public int getYSize(){
-        return 1+(( xsize-filterSize )/stride);
+        return ( xsize/filterSize );
     }
 
     protected void initAry(){
@@ -35,6 +35,7 @@ public class LayerPoolingMax {
             for (int i = 0; i < xsize; i++) {
                 for (int j = 0; j < xsize; j++) {
                     X[n][i][j] = _x[n][i][j];
+                    dX[n][i][j] = 0f;
                 }
             }
         }
@@ -42,43 +43,45 @@ public class LayerPoolingMax {
 
     public float[][][] Forward ( float[][][] _x ) {
         setX( _x );
+        float max=0f; int maxX=0; int maxY=0;
         float[][][] Z = new float[channels][ysize][ysize];
             for (int c=0;c<channels;c++){
-                Z[c] = forwardChannel( c );
-            }
-        return Z;
-    }
+                for (int i=0; i<ysize; i++){
+                    for (int j=0;j<ysize;j++){
+                        max=_x[c][i][j]; maxX=0; maxY=0;
 
-    public float[][] forwardChannel ( int channel ) {
-        float[][] Z = new float[ysize][ysize];
-            for (int i=0;i<ysize;i++){
-                for (int j=0;j<ysize;j++) {
-                    float max = X[channel][i*filterSize][j*filterSize];
-                    int maxx = 0;
-                    int maxy = 0;
-                    for (int x=0;x<filterSize;x++){
-                        for (int y=0;y<filterSize;y++) {
-                            dX[channel][i*filterSize][j*filterSize]=0.0f;
-                            if ( max<X[channel][i*filterSize+x][j*filterSize+y] ) { max=X[channel][i*filterSize+x][j*filterSize+y]; maxx=x; maxy=y; }
+                        // *** startPix
+                        for ( int x=0;x<filterSize;x++){
+                            for (int y=0;y<filterSize;y++){
+                                if ( _x[c][i][j]>max ){ maxX=x; maxY=y; max=_x[c][i][j]; }
+                            }
                         }
+                        Z[c][i][j]=max;
+                        dX[c][i+maxX][j+maxY]=1f;
                     }
-                    dX[channel][i*filterSize+maxx][j*filterSize+maxy]=1.0f;
-                    Z[i][j]=max;
                 }
             }
         return Z;
     }
+
+
+
+
+
+
 
     public float[][][] Backward( float[][][] delta ){
         float[][][] OUT = new float[channels][xsize][xsize];
         for (int c=0;c<channels;c++ ){
             for (int i=0;i<ysize;i++){
                 for (int j=0;j<ysize;j++) {
+
                     for (int x=0;x<filterSize;x++){
                         for (int y=0;y<filterSize;y++){
-                            OUT[c][i*(filterSize) +x][j*(filterSize) +y] = delta[c][i][j] * dX[c][i*filterSize+x][j*filterSize+y];
+                            OUT[c][i+x][j+y] = delta[c][i][j] * dX[c][i+x][j+y];
                         }
                     }
+
                 }
             }
         }

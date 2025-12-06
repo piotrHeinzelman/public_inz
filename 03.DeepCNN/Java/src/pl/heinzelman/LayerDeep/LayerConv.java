@@ -159,7 +159,7 @@ public class LayerConv {
     }
     protected float getMaxRand(){
         //float inputChannelNum = 6; // inputs
-        float inputChannelNum =2 * xsize*xsize*channels ; // inputs
+        float inputChannelNum = 2 * xsize*xsize*channels ; // inputs
         float outputChannelNum = filterNum; //
         float val = (float)Math.pow((filterNum / ((inputChannelNum + outputChannelNum) * (filterSize * filterSize))), .5f);
         //System.out.println( val );
