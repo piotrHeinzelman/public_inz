@@ -131,7 +131,7 @@ public class Task_4_CNN implements Task{
         float[][][]t8=relu8.Forward ( poolMax8.Forward( conv8.Forward ( t7  )));
         float[][][]t9=relu9.Forward ( poolMax9.Forward( conv9.Forward ( t8  )));
         float[] flat = flatten.Forward(t9);
-        System.out.println( "Flat: " + Arrays.toString( flat ) );
+        //System.out.println( "Flat: " + Arrays.toString( flat ) );
         float[] soft = softmax.nForward(flat);
         //System.out.println(   Arrays.toString( soft ) );
         return soft;
