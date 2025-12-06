@@ -126,7 +126,8 @@ public class Task_4_CNN implements Task{
 
         // Instant start = Instant.now();
 
-        //System.out.println(   Arrays.toString( X[0][120]  ) );
+        // System.out.println(   Arrays.toString( X[0][120]  ) );
+        // System.out.println( "INPUT:" +  X.length  + " : " + conv1.Forward( X ).length + " : " + poolMax1.Forward( conv1.Forward( X )).length   );
         float[][][]t1=relu1.Forward ( poolMax1.Forward( conv1.Forward( X )));
         float[][][]t2=relu2.Forward ( poolMax2.Forward( conv2.Forward ( t1  )));
         float[][][]t3=relu3.Forward ( poolMax3.Forward( conv3.Forward ( t2  )));
@@ -151,8 +152,7 @@ public class Task_4_CNN implements Task{
     }
 
     public float[][][] backward_( float[] gradient ){
-           System.out.println(Arrays.toString( gradient ) );
-        float[][][] t9 =flatten.Backward(  softmax.nBackward( gradient ));
+        float[][][] t9 =  flatten.Backward( softmax.nBackward( gradient ));
         float[][][] t8 = conv9.Backward ( poolMax9.Backward  ( relu9.Backward   ( t9 )));
         float[][][] t7 = conv8.Backward ( poolMax8.Backward  ( relu8.Backward   ( t8 )));
         float[][][] t6 = conv7.Backward ( poolMax7.Backward  ( relu7.Backward   ( t7 )));
@@ -162,8 +162,7 @@ public class Task_4_CNN implements Task{
         float[][][] t2 = conv3.Backward ( poolMax3.Backward  ( relu3.Backward   ( t3 )));
         float[][][] t1 = conv2.Backward ( poolMax2.Backward  ( relu2.Backward   ( t2 )));
         float[][][] t0 = conv1.Backward ( poolMax1.Backward  ( relu1.Backward   ( t1 )));
-
-        return conv1.Backward(  poolMax1.Backward   ( relu1.Backward ( t0 )));
+        return t0;
     }
 
 

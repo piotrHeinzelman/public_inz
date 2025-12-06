@@ -8,7 +8,7 @@ import java.io.IOException;
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 
 public class Tools2 {
-    private static String path="../../../data/";
+    private static String path="../../data/";
     private static String testXname="output.bin";
     private static String testYname="output.class";
     private static String trainXname="output.bin";
