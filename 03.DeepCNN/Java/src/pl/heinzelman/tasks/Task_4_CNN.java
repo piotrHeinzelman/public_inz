@@ -180,54 +180,26 @@ public class Task_4_CNN implements Task{
 
             loss += softmax.delta_Loss( correct_label );
 
-            int findClass = tools.getIndexMaxFloat(Z);
-            if ( correct_label==findClass ){ accuracy++; }
-
             float[] gradient = softmax.gradientCNN( Z, correct_label );
                 if (i<10) System.out.println("I:" + i + "correct_label:" + correct_label + "   Z:" + Arrays.toString( Z ) + ", grad"+Arrays.toString(gradient) );
             backward_(gradient);
         }
-        System.out.println( "LOSS:" + loss );
-        loss=0.0f;
 
-        train_test( test_size );
-    }
-
-
-    public void train_test( int test_size ){
-        int accuracy=0;
+        // TEST
         for (int i = 0; i < test_size; i++) {
             //FORWARD PROPAGATION
-            float[][][] X = trainX[ i ]; //tools.convertToSquare240x240( trainX[ ind_ex ]);
-            int correct_label = tools.getIndexMaxFloat(trainY[ i ]);
-            float[] Z = forward_(X);
+            int ind_ex =  (int) ( rand.nextFloat()*test_size );
+
+            int correct_label = tools.getIndexMaxFloat(trainY[ind_ex]);
+            float[] Z = forward_(trainX[ ind_ex ]);
             int findClass = tools.getIndexMaxFloat(Z);
             if ( correct_label==findClass ){ accuracy++; }
-            System.out.println( "test:" + findClass + " : correct: " + correct_label + " : " + Arrays.toString( Z ) );
-
+            float[] gradient = softmax.gradientCNN( Z, correct_label );
+            backward_(gradient);
+            System.out.println( "test: " + correct_label + " ? " + findClass );
         }
-        System.out.println( "ACC:" + 1f*accuracy/test_size );
-    }
-
-
-
-    public  void test ( int test_size  )   {
-        int accuracy=0; int error=0;
-        for (int i = 0; i < test_size; i++) {
-            //FORWARD PROPAGATION
-            int correct_label=tools.getIndexMaxFloat( trainY[i] );
-            float[][][] X = trainX[i];
-
-            float[] Z = forward_(X);
-            int findClass = tools.getIndexMaxFloat(Z);
-
-            System.out.println( i + " testY[i]:" + Arrays.toString( trainY[i] ) +"="+tools.getIndexMaxFloat(trainY[i])+", Z[i]:" + Arrays.toString(Z) + "="+tools.getIndexMaxFloat(Z));
-
-            if ( correct_label == findClass ){ accuracy++; }
-            else { error++; }
-
-        }
-        System.out.println("\n*************\n** TEST ** errors "+ ( error ) + " : acc["+( accuracy*100 ) / test_size+ "]%\n" );
+        System.out.println( "ACCURACY: " + 1f*accuracy / test_size  );
+        loss=0.0f;
     }
 
 }
