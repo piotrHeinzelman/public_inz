@@ -32,8 +32,7 @@ public Neuron2D( int m, LayerConv parent ) {
     public void rnd( Random rand , float max ){
         for ( int i=0;i< W.length; i++){
             for (int j=0;j<W[0].length; j++){
-                W[i][j]= -max +  2*max*(rand.nextFloat()%1f);   //-max/2f + max*( 1/);
-               // System.out.println( "max:" + max + ": " + W[i][j] );
+                W[i][j]= -max +  2*max*(rand.nextFloat()%1f);
             }
         }
     }

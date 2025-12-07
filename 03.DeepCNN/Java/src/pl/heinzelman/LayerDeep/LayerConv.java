@@ -11,12 +11,12 @@ public class LayerConv {
 
     protected float[][][] Y;
     protected int filterNum;
-    protected int filterForChannel; // output channel
+    protected int filterForChannel;
     protected int filterSize;
     protected int padding=0;
     protected int stride;
 
-    protected int channels; // input channel
+    protected int channels;
     protected int xsize;
     protected int ysize;
 
@@ -55,16 +55,6 @@ public class LayerConv {
         Y = new float[ filterForChannel ][ ysize ][ ysize ];
     }
 
-    public void setUpByX(float[][][] _x ) {
-        this.channels = _x.length;
-        this.filterNum = filterForChannel*channels;
-        this.xsize = _x[0].length;
-        this.ysize = getYSize();
-        initAry();
-        initFilters();
-    }
-
-
     public float[][][] Forward( float[][][] _x  ) {
         for (int n = 0; n < channels; n++) {
             for (int x = 0; x < xsize; x++) {
@@ -73,7 +63,6 @@ public class LayerConv {
                 }
             }
         }
-
 
         float[][][] Y_ = new float[filterForChannel][ysize][ysize];
         float[][][] FtmpOUT = new float[filterNum][ysize][ysize];
@@ -158,12 +147,7 @@ public class LayerConv {
         return 1+(( xsize+padding+padding-filterSize )/stride);
     }
     protected float getMaxRand(){
-        //float inputChannelNum = 6; // inputs
-        float inputChannelNum =  2 * xsize*xsize*channels ; // inputs
-        float outputChannelNum = filterNum; //
-        float val = (float)Math.pow((filterNum / ((inputChannelNum + outputChannelNum) * (filterSize * filterSize))), .5f);
-        //System.out.println( val );
-        return  1f;///filterSize*filterNum;
+        return  1f;
     }
 }
 

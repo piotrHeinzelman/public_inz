@@ -4,7 +4,6 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 public interface Task {
-
     public void prepare( int percent );
     public void run();
 

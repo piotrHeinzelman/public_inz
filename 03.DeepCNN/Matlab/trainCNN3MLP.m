@@ -1,7 +1,7 @@
 % https://www.mathworks.com/help/deeplearning/ref/dlnetwork.initialize.html
 %
 gpuDevice();
-epoch=350;
+epoch=450;
 load("trainData.mat");
 load('detector');
 
@@ -23,7 +23,7 @@ trainingDataForEstimation = transform(ds,@(data)preprocessData(data,inputSize));
 %anchorBoxes = {anchors(1:3,:);anchors(4:6,:)};
 
 classes = ["sas"];
-anchorBoxes = {[90,110; 90,115; 90,120] };
+anchorBoxes = {[70,110; 70,110; 70,110] };
 
 TS = datetime('now');
 detector = yolov4ObjectDetector(detector.Network, classes,anchorBoxes,InputSize=inputSize);
@@ -44,7 +44,7 @@ TIME_detector = seconds(duration(T-TS));
 
 I = imread("../../data/dedra.jpg");
 
-[bboxes, scores, labels] = detect(detector,I,Threshold=0.496 );
+[bboxes, scores, labels] = detect(detector,I,Threshold=0.495 );
 detectedImg = insertObjectAnnotation(I,"Rectangle",bboxes,labels);
 
 fprintf ('# prepare Net: %f \n'    ,TIME_NetworkPrepare );

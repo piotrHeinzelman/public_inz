@@ -27,8 +27,8 @@ public class Tools2 {
         int H=240; int W=240; int C=3; String out="";
 
         try {
-            trainYfile =  loadBin( path + trainYname,  2, percent*8*2 ); // offset=8, size=percent*600  // OK
-            testYfile =  loadBin( path + testYname,   2, percent*8*2 );   // offset=8, size=percent*100 // OK
+            trainYfile =  loadBin( path + trainYname,  2, percent*8*2 );
+            testYfile =  loadBin( path + testYname,   2, percent*8*2 );
 
             trainY = new float[percent*8][2];
             testY  = new float[percent*8][2];
@@ -38,20 +38,15 @@ public class Tools2 {
                 if ( trainYfile[i*2 + 0] > .5f ) { trainY[i][0]=1f; testY[i][0]=1f;} else { trainY[i][1]=1f; testY[i][1]=1f;}
             }
 
-
-
-            byte[] trainXfile = loadBin(path + trainXname, 240*240*3, percent*8 * 240*240*3 );// offset=16 size=percent*784*600
-
+            byte[] trainXfile = loadBin(path + trainXname, 240*240*3, percent*8 * 240*240*3 );
             trainX=new float[percent*8][C][H][W];
             testX=new float[percent*8][C][H][W];
             for (int n=0;n<percent*8;n++) {
                 for (int h=0;h<H;h++){
                     for (int w=0;w<W;w++) {
                         for (int c = 0; c < C; c++) {
-
                             byte val =  trainXfile[n *W*H*C + h * W*C + w*C + c];
-                            float fval = (1f/127f)*val;//*(1f/127f);
-                            //System.out.println( fval );
+                            float fval = (1f/127f)*val;
                             trainX[n][c][h][w] =  fval;
                             testX[n][c][h][w] = fval;
                         }
@@ -63,14 +58,6 @@ public class Tools2 {
         }
     }
 
-
-
-
-
-
-
-
-
     public static byte[] loadBin( String filename, int offset, int len ) throws IOException {
         byte[] bytesBuf = new byte[ len ];
         File f = new File( filename );
@@ -79,7 +66,6 @@ public class Tools2 {
         fis.read( bytesBuf, 0, len );
         return bytesBuf;
     }
-
 
     public int getIndexMaxFloat(float[] floats ){
         int maxI=0;
@@ -90,12 +76,10 @@ public class Tools2 {
         return maxI;
     }
 
-
     public void saveXasJPG( float[][][] tensor ){
         int H=tensor[0].length;
         int W=tensor[0][0].length;
-        // System.out.println( "H:" + H + ", W:" + W + " :: " + ( tensor[0][120][120] )  );
-        BufferedImage image = new BufferedImage( W, H, TYPE_INT_RGB ); // 	TYPE_3BYTE_BGR
+        BufferedImage image = new BufferedImage( W, H, TYPE_INT_RGB );
 
         File file = new File("image.png");
         for ( int i=0; i<H; i++){
@@ -111,13 +95,6 @@ public class Tools2 {
         }
     }
 
-
-
-
-
-
-
-
 public float[][] getTrainY() { return trainY; }
     public float[][] getTestY()  { return testY;  }
     public float[][][][] getTrainX() { return trainX; }
@@ -132,11 +109,6 @@ public float[][] getTrainY() { return trainY; }
         }
         return C;
     }
-
-    public void shape(float[][][] tensor){
-        System.out.println( "size:" + tensor.length + ", " + tensor[0].length + ", "+tensor[0][0].length  );
-    }
-
 }
 
 

@@ -23,13 +23,6 @@ public class Task_4_CNN implements Task{
     private float[][] trainY;
     private int[][] errors = new int [2][2];
 
-/*
-    private LayerConv conv = new LayerConv( 5 , 20, null, null  );
-    private LayerPoolingMax poolMax = new LayerPoolingMax(2,2);
-    private LayerFlatten flatten = new LayerFlatten();
-    private LayerSoftmaxMultiClass softmax = new LayerSoftmaxMultiClass( 118*118*20, 2 );
-*/
-
     private LayerConv conv1 = new LayerConv( 7 , 32, null, null  );
     private LayerPoolingMax poolMax1 = new LayerPoolingMax(2,2);
     private LayerReLU      relu1 = new LayerReLU();
@@ -58,23 +51,16 @@ public class Task_4_CNN implements Task{
     private LayerPoolingMax poolMax7 = new LayerPoolingMax(1,1);
     private LayerReLU      relu7 = new LayerReLU();
 
-
-
     private LayerConv conv8 = new LayerConv( 1 , 6, null, null  );
     private LayerPoolingMax poolMax8 = new LayerPoolingMax(1,1);
     private LayerReLU      relu8 = new LayerReLU();
-
 
     private LayerConv conv9 = new LayerConv( 3 , 2, null, null  );
     private LayerPoolingMax poolMax9 = new LayerPoolingMax(1,1);
     private LayerReLU      relu9 = new LayerReLU();
 
-
-
     private LayerFlatten flatten = new LayerFlatten();
     private LayerSoftmaxMultiClass softmax = new LayerSoftmaxMultiClass( 2, 2 );
-
-
 
     public void prepare( int percent ) {
         this.percent=percent;
@@ -100,8 +86,6 @@ public class Task_4_CNN implements Task{
         conv7.setUpByX(18,3);
         conv8.setUpByX(8,3);
         conv9.setUpByX(6,3);
-
-
     }
 
     public float[] forward_( float[][][] X ){
@@ -116,13 +100,6 @@ public class Task_4_CNN implements Task{
         float[][][]t9=relu9.Forward ( poolMax9.Forward( conv9.Forward ( t8  )));
         float[] flat = flatten.Forward(t9);
         float[] soft = softmax.nForward(flat);
-
-
-        //Instant end = Instant.now();
-        //System.out.println( "\r\n\r\n------ PREDICTION TIME --------");
-        //long gap = ChronoUnit.MILLIS.between(start, end);
-        //System.out.println( " -GAP - : " + gap/1000.0 + " [sek.]" );
-
         return soft;
     }
 
@@ -142,11 +119,6 @@ public class Task_4_CNN implements Task{
         return t0;
     }
 
-
-
-
-// *********************
-
     @Override
     public void run() {
         prepare( percent );
@@ -165,10 +137,7 @@ public class Task_4_CNN implements Task{
 
         for (int i = 0; i < test_size; i++) {
             //FORWARD PROPAGATION
-
-            int ind_ex =  (int) ( rand.nextFloat()*test_size );
-
-            float[][][] X = trainX[ i ]; //tools.convertToSquare240x240( trainX[ ind_ex ]);
+            float[][][] X = trainX[ i ];
             int correct_label = tools.getIndexMaxFloat(trainY[i]);
             float[] Z = forward_(X);
 
@@ -179,7 +148,6 @@ public class Task_4_CNN implements Task{
             backward_(gradient);
         }
 	System.out.println("LOSS:"+loss);
-
         // TEST
         for (int i = 0; i < test_size/5; i++) {
             //FORWARD PROPAGATION

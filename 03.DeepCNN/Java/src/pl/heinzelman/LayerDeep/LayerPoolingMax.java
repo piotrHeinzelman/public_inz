@@ -13,7 +13,7 @@ public class LayerPoolingMax {
 
     public LayerPoolingMax(int filterSize, Integer stride ) {
         this.filterSize = filterSize;
-        this.stride = filterSize ; //(stride==null) ? 1 : stride;
+        this.stride = filterSize ;
     }
 
     public int getYSize(){
@@ -63,12 +63,6 @@ public class LayerPoolingMax {
             }
         return Z;
     }
-
-
-
-
-
-
 
     public float[][][] Backward( float[][][] delta ){
         float[][][] OUT = new float[channels][xsize][xsize];

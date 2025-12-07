@@ -1,28 +1,13 @@
 package pl.heinzelman.LayerDeep;
 
 public class LayerReLU {
-
-    protected String name;
-
     protected float[][][] dX;
     protected float[][][] X;
     protected int C=0;
     protected int H=0;
     protected int W=0;
 
-
     public LayerReLU() {}
-
-    public void setName( String name ) { this.name = name; }
-/*
-    public float[][][] Forward ( ) {
-        float[][][] Z = new float[channels][xsize][xsize];
-            for (int c=0;c<channels;c++){
-                Z[c] = forwardChannel( c );
-            }
-        return Z;
-    }
-*/
 
     public float[][][] Forward( float[][][] _x  ) {
         C = _x.length;
@@ -43,18 +28,5 @@ public class LayerReLU {
         return X;
     }
 
-
     public float[][][] Backward( float[][][] delta ){ return delta; }
-    public float[][][] BackwardOFF( float[][][] delta ){ // delta = (s-z)*d....
-        int delta_size=delta[0].length;
-        float[][][] OUT = new float[ C ][ W ][ H ];
-        for (int c=0;c<C;c++ ){
-            for (int i=0;i<H;i++){
-                for (int j=0;j<W;j++) {
-                    OUT[c][i][j] = delta[c][i][j] * dX[c][i][j];
-                }
-            }
-        }
-        return OUT;
-    }
 }

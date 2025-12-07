@@ -83,7 +83,6 @@ public class LayerSoftmaxMultiClass implements LayerParent {
     public float[] getX() { return X; }
     public float[] getEout() { return Eout; }
 
-
     @Override  public String toString() { return "";}
 
     public float delta_Loss( int correct_label ) {
@@ -92,9 +91,8 @@ public class LayerSoftmaxMultiClass implements LayerParent {
     }
 
     public float[] gradientCNN( float[] out_l, int correct_label ){
-        float[] gradient=new float[out_l.length]; //Mat.v_zeros(10);
-        for (int i=0;i< out_l.length;i++){ gradient[i]=-1.1f*out_l[i]; }//out_l[i]*1.5f;}//-out_l[correct_label]*out_l[i]; }
-        //gradient[correct_label]=-1/out_l[correct_label];
+        float[] gradient=new float[out_l.length];
+        for (int i=0;i< out_l.length;i++){ gradient[i]=-1.1f*out_l[i]; }
         gradient[correct_label]=1f-out_l[correct_label];
         return gradient;
     }
