@@ -7,5 +7,6 @@ public class Main {
         Task task;
         task = new Task_4_CNN();
         task.doTask( 5 );
+        //  -GAP - : 1398.269 [sek.] - 1 epoka 30%;
     }
 }

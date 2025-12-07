@@ -5,7 +5,7 @@ epoch=50; %50
 GPU=true;
 TIME_START=datetime('now');
 
-dataFolder = "../../240pix2classSAS/";
+dataFolder = "../../../data/240pix2classSAS/";
 imds = imageDatastore(dataFolder, ...
     IncludeSubfolders=true, ...
     LabelSource="foldernames");

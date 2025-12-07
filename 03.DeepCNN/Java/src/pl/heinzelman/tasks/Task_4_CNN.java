@@ -150,7 +150,7 @@ public class Task_4_CNN implements Task{
     @Override
     public void run() {
         prepare( percent );
-        for ( int i=0;i<20;i++) {
+        for ( int i=0;i<50;i++) {
             System.out.println( "epoch: " + i );
             train(percent*8 );
        }
@@ -179,6 +179,7 @@ public class Task_4_CNN implements Task{
             backward_(gradient);
         }
 	System.out.println("LOSS:"+loss);
+
         // TEST
         for (int i = 0; i < test_size/5; i++) {
             //FORWARD PROPAGATION
