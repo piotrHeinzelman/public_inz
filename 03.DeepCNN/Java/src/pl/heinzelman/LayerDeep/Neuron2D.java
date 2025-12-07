@@ -6,7 +6,7 @@ private int m;
 private float[][] W;
 
 private final LayerConv parent;
-protected final static float mu=0.001f;
+protected final static float mu=0.01f;
 
 public Neuron2D( int m, LayerConv parent ) {
         this.parent=parent;

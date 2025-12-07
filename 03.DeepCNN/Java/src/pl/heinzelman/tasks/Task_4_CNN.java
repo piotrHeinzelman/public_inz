@@ -168,7 +168,7 @@ public class Task_4_CNN implements Task{
 
             int ind_ex =  (int) ( rand.nextFloat()*test_size );
 
-            float[][][] X = trainX[ ind_ex ]; //tools.convertToSquare240x240( trainX[ ind_ex ]);
+            float[][][] X = trainX[ i ]; //tools.convertToSquare240x240( trainX[ ind_ex ]);
             int correct_label = tools.getIndexMaxFloat(trainY[ind_ex]);
             float[] Z = forward_(X);
 
