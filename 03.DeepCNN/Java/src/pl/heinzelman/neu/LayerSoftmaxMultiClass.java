@@ -30,7 +30,7 @@ public class LayerSoftmaxMultiClass implements LayerParent {
         float normalization=X.length;
         for ( Neuron neu : neurons ) {
             for ( int m=0; m<X.length; m++ ) {
-                neu.setWm( m , random.nextFloat() / normalization );
+                neu.setWm( m , random.nextFloat() / 5f /* normalization*/ );
             }
         }
     }
@@ -93,9 +93,9 @@ public class LayerSoftmaxMultiClass implements LayerParent {
 
     public float[] gradientCNN( float[] out_l, int correct_label ){
         float[] gradient=new float[out_l.length]; //Mat.v_zeros(10);
-        for (int i=0;i< out_l.length;i++){ gradient[i]=-out_l[i]; }
+        for (int i=0;i< out_l.length;i++){ gradient[i]=0f; }
         //gradient[correct_label]=-1/out_l[correct_label];
-        gradient[correct_label]=1-out_l[correct_label];
+        gradient[correct_label]=-1/out_l[correct_label];
         return gradient;
     }
 }
