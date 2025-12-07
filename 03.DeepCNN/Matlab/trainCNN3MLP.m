@@ -44,7 +44,7 @@ TIME_detector = seconds(duration(T-TS));
 
 I = imread("../../data/dedra.jpg");
 
-[bboxes, scores, labels] = detect(detector,I,Threshold=0.495 );
+[bboxes, scores, labels] = detect(detector,I,Threshold=0.4965 );
 detectedImg = insertObjectAnnotation(I,"Rectangle",bboxes,labels);
 
 fprintf ('# prepare Net: %f \n'    ,TIME_NetworkPrepare );
