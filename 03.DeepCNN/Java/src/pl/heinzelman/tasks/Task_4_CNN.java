@@ -34,11 +34,9 @@ public class Task_4_CNN implements Task{
     private LayerPoolingMax poolMax1 = new LayerPoolingMax(2,2);
     private LayerReLU      relu1 = new LayerReLU();
 
-
     private LayerConv conv2 = new LayerConv( 5 , 64, null, null  );
     private LayerPoolingMax poolMax2 = new LayerPoolingMax(2,2);
     private LayerReLU      relu2 = new LayerReLU();
-
 
     private LayerConv conv3 = new LayerConv( 3 , 128, null, null  );
     private LayerPoolingMax poolMax3 = new LayerPoolingMax(2,2);
@@ -48,17 +46,13 @@ public class Task_4_CNN implements Task{
     private LayerPoolingMax poolMax4 = new LayerPoolingMax(2,2);
     private LayerReLU      relu4 = new LayerReLU();
 
-
     private LayerConv conv5 = new LayerConv( 1 , 256, null, null  );
     private LayerPoolingMax poolMax5 = new LayerPoolingMax(2,2);
     private LayerReLU      relu5 = new LayerReLU();
 
-
     private LayerConv conv6 = new LayerConv( 1 , 18, null, null  );
     private LayerPoolingMax poolMax6 = new LayerPoolingMax(2,2);
     private LayerReLU      relu6 = new LayerReLU();
-
-
 
     private LayerConv conv7 = new LayerConv( 1 , 8, null, null  );
     private LayerPoolingMax poolMax7 = new LayerPoolingMax(1,1);
@@ -181,12 +175,12 @@ public class Task_4_CNN implements Task{
             loss += softmax.delta_Loss( correct_label );
 
             float[] gradient = softmax.gradientCNN( Z, correct_label );
-                if (i<10) System.out.println("I:" + i + "correct_label:" + correct_label + "   Z:" + Arrays.toString( Z ) + ", grad"+Arrays.toString(gradient) );
+                if (true) System.out.println("I:" + i + "correct_label:" + correct_label + "   Z:" + Arrays.toString( Z ) + ", grad"+Arrays.toString(gradient) );
             backward_(gradient);
         }
-
+	System.out.println("LOSS:"+loss);
         // TEST
-        for (int i = 0; i < test_size; i++) {
+        for (int i = 0; i < test_size/5; i++) {
             //FORWARD PROPAGATION
             int ind_ex =  (int) ( rand.nextFloat()*test_size );
 
@@ -198,7 +192,7 @@ public class Task_4_CNN implements Task{
             backward_(gradient);
             System.out.println( "test: " + correct_label + " ? " + findClass );
         }
-        System.out.println( "ACCURACY: " + 1f*accuracy / test_size  );
+        System.out.println( "ACCURACY: " + 1f*accuracy / (test_size/5)  );
         loss=0.0f;
     }
 

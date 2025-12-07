@@ -11,7 +11,6 @@ public class Neuron {
         this.W = new float[m];
     }
 
-
     public void setWm( int m, float wji ){ W[m] = wji; }
 
     public float Forward( float[] X ) {
