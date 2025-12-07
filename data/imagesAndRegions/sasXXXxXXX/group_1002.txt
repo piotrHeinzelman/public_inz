@@ -1,0 +1,62 @@
+
+\cite{rasheed},
+\cite{conv},
+\cite{conv1}.
+
+
+Sieć YOLO (ang. You Only Look Once), wykonująca jednocześnie funkcje klasyfikatora i systemu regresyjnego, który służy do wykrywania określonych obiektów w obrazie i określaniu ich współrzędnych. Sieć Yolo można pobrać w wersji wstępnie nauczonej i tylko douczyć do własnych zastosowań. Obecnie dostępna jest już 12 wersja\cite{ultralytics_doc}. 
+
+
+Przygotowanie odpowiedzi przez model wymaga niewiele zasobów, a nauczony model można uruchamiać na tanim sprzęcie o małych możliwościach obliczeniowych. Jednak uczenie maszynowe wymaga wykorzystania dużej liczby próbek uczących w jednej epoce, a cały proces uczenia składa się z wielu powtórzeń. Proces uczenia wymaga albo dużych możliwości obliczeniowych albo dużej ilości czasu. Dokładne zestawienia zostaną opisane w kolejnych rozdziałach niniejszej pracy. 
+
+Biblioteki dostarczające implementacje modeli sieci neuronowych powstały dla większości języków programowania ogólnego przeznaczenia. Niektóre z nich wykorzystują procesory graficzne do wysokowydajnych równoległych obliczeń, co powoduje wzrost wydajności i znaczące obniżenie czasu uczenia sieci. Budowanie własnych modeli sieci jest dziś w zasięgu osób prywatnych, hobbystów, studentów czy małych zespołów badawczych i nie wymaga ogromnych nakładów finansowych.
+
+\section{ Cel pracy }
+Podstawowym celem pracy jest ułatwienie podjęcia decyzji o wyborze języka i środowiska w fazie projektowej dla realizacji aplikacji wykorzystujących głębokie sieci neuronowe CNN. 
+
+Celem dydaktycznym jest dogłębne zapoznanie się z tematyką sieci MLP \cite{Korbicz1994} oraz CNN \cite{MMuraszkiewiczRobertNowak} \cite{russell2023} poprzez realizacje i testy własnego rozwiązania zwłaszcza z wykorzystaniem możliwości obliczeniowych karty graficznej. 
+
+\section{ Układ pracy }
+W pierwszej części opisano proces przygotowania i uruchamiania sieci Yolo w różnych środowiskach, opisano aspekty takie jak wygoda tworzenia rozwiązania, dostęp do dokumentacji, ilość dostępnych przykładów.
+
+W części drugiej przedstawiono skrótowo stan wiedzy z zakresu działania sieci neuronowych neuronowych tj. Perceptronu wielowarstwowego (ang. Multilayer Perceptron, MLP) oraz głębokich sieci neuronowych (ang. Convolutional Neural Network, CNN). 
+Zaprezentowano na rysunkach propagację sygnałów przez sieć, propagację wsteczną i oparty na niej proces uczenia sieci.
+
+
+
+W części trzeciej oszacowano ilości operacji niezbędnych dla obliczenia odpowiedzi sieci, oraz ilość operacji niezbędnych dla przeprowadzenia procesu uczenia. 
+
+W części czwartej zaprezentowano sposoby wydajnej realizacji obliczeń :
+Warunkiem niezbędnym do prowadzenia efektywnych badań nad głębokimi sieciami i dużymi modelami jest zdolność efektywnego wykorzystania systemów o dużych mocach obliczeniowych. W pierwszej części opisano metody zwiększania wydajności systemów cyfrowych i zagadnienia przetwarzania równoległego.
+
+
+
+W piątej części zaprezentowano zadania, które będą rozwiązywane przez badane modele sieci.
+
+W szóstej części zaprezentowano, wyniki pomiarów, dokonano podsumowania porównania wykonanych zadań w językach. 
+
+Ostatnia część zawiera wyniki oraz przesłanki, które mogą być pomocne przy doborze języka w celu realizacji głębokich sieci neuronowych w zależności od konkretnych wymagań i możliwości stawianych projektowanym rozwiązaniom.
+
+\section{ Kod źródłowy i dane uczące }
+Przykłady rozwiązań w Python i Matlab zaczerpnięto 
+\begin{itemize}
+    \item z książek: 
+        \cite{Osowski2023} 
+        \cite{Osowski2020} 
+        \cite{guido2021} 
+        \cite{raschka2021}
+    \item instrukcji i~przykładów załączonych do bibliotek
+    \item otwartych repozytoriów git 
+        \cite{yolov8_ultralytics}
+        \cite{yolov8python}
+        \cite{yolov8c}
+\end{itemize}           
+Obrazy treningowe 
+\begin{itemize}
+    \item pisma odręcznego pochodzą z bazy MNIST (yann.lecun.com)
+    \item zdjęcia twarzy z serwisów: google.com oraz filmweb.pl
+\end{itemize}    
+Pełen kod dostępny na github:
+\begin{itemize}
+    \item github.com/piotrHeinzelman/inz/tree/main/MixedProj
+\end{itemize}    

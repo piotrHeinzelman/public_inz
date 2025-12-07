@@ -6,7 +6,7 @@ load("trainData.mat");
 load('detector');
 
 
-dataDir = "../../imagesAndRegions/sas/";
+dataDir = "../../data/imagesAndRegions/sas/";
 trainData.imageFilename = fullfile(dataDir,trainData.imageFilename);
 imds = imageDatastore(trainData.imageFilename);
 blds = boxLabelDatastore(trainData(:,2:end));
