@@ -8,7 +8,7 @@
 % Number of filters in the output convolutional layer must be 21 for 3 anchor boxes and 2 classes.
 
 
-path="../../imagesAndRegions/sas/";
+path="../../data/imagesAndRegions/sas/";
 load("trainData.mat");
 load("netCNN_SAS.mat");
 %load("dlnet.mat");
@@ -37,7 +37,7 @@ trainingDataForEstimation = transform(ds,@(data)preprocessData(data,inputSize));
 %aboxes=anchorBoxes;
 
 classes = ["sas" ];
-anchorBoxes = {[122,177;223,84;80,94] };
+anchorBoxes = {[200,250; 210,250; 200,260] };
 
 
 %detector = yolov4ObjectDetector(net,classes,aboxes,'DetectionNetworkSource',layer );
