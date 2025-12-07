@@ -163,7 +163,7 @@ public class LayerConv {
         float outputChannelNum = filterNum; //
         float val = (float)Math.pow((filterNum / ((inputChannelNum + outputChannelNum) * (filterSize * filterSize))), .5f);
         //System.out.println( val );
-        return  1.12f;///(filterNum);
+        return  val;///(filterNum);
     }
 }
 
