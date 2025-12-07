@@ -8,7 +8,7 @@ import java.io.IOException;
 import static java.awt.image.BufferedImage.TYPE_INT_RGB;
 
 public class Tools2 {
-    private static String path="../../../data/";
+    private static String path="../../data/";
     private static String testXname="output.bin";
     private static String testYname="output.class";
     private static String trainXname="output.bin";
@@ -78,16 +78,6 @@ public class Tools2 {
         fis.skip(offset);
         fis.read( bytesBuf, 0, len );
         return bytesBuf;
-    }
-
-    public float[][] convertToSquare240x240( float[] vector ){
-        float[][] square = new float[240][240];
-        for ( int y=0;y<240;y++ ){
-            for ( int x=0;x<240;x++ ) {
-                square[y][x]=vector[x+240*y];
-            }
-        }
-        return square;
     }
 
 
