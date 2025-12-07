@@ -169,7 +169,7 @@ public class Task_4_CNN implements Task{
             int ind_ex =  (int) ( rand.nextFloat()*test_size );
 
             float[][][] X = trainX[ i ]; //tools.convertToSquare240x240( trainX[ ind_ex ]);
-            int correct_label = tools.getIndexMaxFloat(trainY[ind_ex]);
+            int correct_label = tools.getIndexMaxFloat(trainY[i]);
             float[] Z = forward_(X);
 
             loss += softmax.delta_Loss( correct_label );
@@ -184,8 +184,8 @@ public class Task_4_CNN implements Task{
             //FORWARD PROPAGATION
             int ind_ex =  (int) ( rand.nextFloat()*test_size );
 
-            int correct_label = tools.getIndexMaxFloat(trainY[ind_ex]);
-            float[] Z = forward_(trainX[ ind_ex ]);
+            int correct_label = tools.getIndexMaxFloat(trainY[i]);
+            float[] Z = forward_(trainX[ i ]);
             int findClass = tools.getIndexMaxFloat(Z);
             if ( correct_label==findClass ){ accuracy++; }
             float[] gradient = softmax.gradientCNN( Z, correct_label );
