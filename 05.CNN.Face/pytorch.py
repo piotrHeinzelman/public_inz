@@ -2,7 +2,7 @@
 #(120, 3, 227, 227)
 # CNN 48000 img, epoch: 250
 # Epoch:  249
-# trainForward:  0.81 s
+# trainForward:  8.1 s
 
 
 import numpy as np
