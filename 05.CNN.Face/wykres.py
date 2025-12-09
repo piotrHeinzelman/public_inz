@@ -18,7 +18,7 @@ d2=[None,None,None]
 # net: tiny-coco; task:dog1; class: dog score: 0.762755;  prepare detectortime: :2.496382;
 # load image time: 0.008481; detect object time: 1.285220
 library[ 0 ]="Python\nPyTorch\nTensor Core"
-d0[0]=0.81
+d0[0]=8.1
 
 
 # Matlab, MLP: 2x 64 Neu, epoch=5000, data size=60000, accuracy:0.815000%
