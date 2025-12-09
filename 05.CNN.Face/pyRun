@@ -1,0 +1,4 @@
+echo "#   --- Python --- "
+echo "python3 main.py >> python_out1"
+
+echo 'for a in /sys/bus/pci/devices/*; do echo 0 | sudo tee -a $a/numa_node; done'
