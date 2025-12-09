@@ -103,10 +103,10 @@ max2 = maxPooling2dLayer([3 3], 'Stride',[2 2], 'Padding',[0 0]);
 conv3 = convolution2dLayer([3 3], 384, 'Stride', [1 1], 'Padding', [1 1] );
 relu3 = reluLayer;
 
-conv4 = convolution2dLayer([3 3], 384, 'Stride', [1 1], 'Padding', [1 1] );
+conv4 = convolution2dLayer([3 3], 256, 'Stride', [1 1], 'Padding', [1 1] );
 relu4 = reluLayer;
 
-conv5 = convolution2dLayer([3 3], 256, 'Stride', [1 1], 'Padding', [1 1] );
+conv5 = convolution2dLayer([3 3], 16, 'Stride', [1 1], 'Padding', [1 1] );
 relu5 = reluLayer;
 max5 = maxPooling2dLayer([3 3], 'Stride',[2 2], 'Padding',[0 0]);
 
