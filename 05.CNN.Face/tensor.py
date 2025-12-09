@@ -1,17 +1,4 @@
-#2025-12-09 05:31:05.621464: I tensorflow/core/platform/cpu_feature_guard.cc:143] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
-#2025-12-09 05:31:05.651525: I tensorflow/core/platform/profile_utils/cpu_utils.cc:102] CPU Frequency: 3094220000 Hz
-#2025-12-09 05:31:05.651797: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5567fe9a76a0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
-#2025-12-09 05:31:05.651815: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
-#2025-12-09 05:31:05.697300: I tensorflow/core/common_runtime/process_util.cc:147] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
-
-
-# Time 40.32 / 5 epoch !
-# Python Tensorflow Time:  40.32212281227112
-#Train loss: 2.303210973739624
-#Train accuracy: 0.10000000149011612
-#Test loss: 2.303210973739624
-#Test accuracy: 0.10000000149011612
-
+#time  1816 s
 
 import tensorflow as tf
 import numpy as np
@@ -19,14 +6,9 @@ from tensorflow import keras
 
 import os
 import time
-#from tensorflow.keras.backend import clear_session
 
 device_name = tf.test.gpu_device_name()
 print(device_name)
-
-#from keras import backend as K
-#K.tensorflow_backend._get_available_gpus()
-
 
 physical_devices = tf.config.list_physical_devices('GPU')
 print(physical_devices)
@@ -35,7 +17,7 @@ if physical_devices:
       tf.config.experimental.set_memory_growth(gpu, True)
 
 # params
-epochs = 5
+epochs = 250
 num_classes = 10
 dataSize=5
 
@@ -53,12 +35,6 @@ def readFileY ( fileName ,  multi ):
     data=np.fromfile( fileName, np.uint8, len, '' )
     file.close()
     return data
-
-
-
-# padding: "valid" - no padding
-# padding: "same" - same input and output (if stride=1)
-
 
 def AlexNet():
    NUMBER_OF_CLASSES = 10
@@ -95,21 +71,7 @@ testY = readFileY ('data/testY', dataSize  )
 trainY = trainY.astype("int")
 testY = testY.astype("int")
 
-# print( "trainX[0].shape" )
-# print( trainX[0].shape )
-# print( "trainX[0]" )
-# print( trainX[0] )
-
-
-
 model = AlexNet()
-#model.summary()
-
-
-# print ( trainY.shape )
-# print ( trainY[2])
-
-
 
 model.compile(optimizer='adam',
   loss='sparse_categorical_crossentropy',
@@ -134,9 +96,4 @@ print("Train accuracy:", score[1])
 score = model.evaluate(testX, testY, verbose=0 )
 print("Test loss:", score[0])
 print("Test accuracy:", score[1])
-
-
-
-#clear_session()
-
 

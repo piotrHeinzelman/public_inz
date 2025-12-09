@@ -1,5 +1,5 @@
 % Training finished: Max epochs completed.
-% CNN face: Alexnet 500 cycles: (Linux GPU)
+% CNN face: Alexnet 250 cycles: (Linux GPU)
 % accuracy trainX: a:1.000000
 
 %[]=52.657757
@@ -169,7 +169,7 @@ weights_first=netTransfer.Layers(2,1).Weights(:,:,1,1);
 predictedLabels = classify(netTransfer, xtrain);
   accuracy = accuracyCheck( predictedLabels', ytrain );
 
-    fprintf('# CNN face: Alexnet 500 cycles: (Linux GPU)\n' );
+    fprintf('# CNN face: Alexnet 250 cycles: (Linux GPU)\n' );
     fprintf( '# accuracy trainX: a:%f\n\n' , accuracy );
     fprintf ('m[]=%f\n' , seconds(D)  );
 
